@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.entity.UserInfo;
 
+@Mapper
 public interface UserInfoMapper {
 	
     /**
