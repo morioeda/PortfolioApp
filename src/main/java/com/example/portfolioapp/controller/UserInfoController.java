@@ -1,9 +1,11 @@
-package com.example.portfolioapp;
+package com.example.portfolioapp.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.portfolioapp.dto.UserAddRequest;
 
 @Controller
 public class UserInfoController {
@@ -20,13 +22,6 @@ public class UserInfoController {
     }
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	}
+}
 
 
