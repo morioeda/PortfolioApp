@@ -15,10 +15,10 @@ public class UserInfoController {
      * @param model Model
      * @return ユーザー情報一覧画面
      */
-    @GetMapping(value = "/user/add")
+    @GetMapping(value = "/user/signin")
     public String displayAdd(Model model) {
         model.addAttribute("userAddRequest", new UserAddRequest());
-        return "";
+        return "user/signin";
     }
 	
 	

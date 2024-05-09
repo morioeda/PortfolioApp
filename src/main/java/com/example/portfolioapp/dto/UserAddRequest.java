@@ -18,7 +18,7 @@ public class UserAddRequest implements Serializable {
      * 名前
      */
     @NotEmpty(message = "名前を入力してください")
-    @Size(max = 100, message = "名前は100桁以内で入力してください")
+    @Size(max = 100, message = "名前は100字以内で入力してください")
     private String name;
     /**
      * メールアドレス
