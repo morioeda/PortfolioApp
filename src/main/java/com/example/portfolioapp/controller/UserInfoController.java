@@ -33,6 +33,15 @@ public class UserInfoController {
         model.addAttribute("userAddRequest", new UserAddRequest());
         return "user/signin";
     }
+    
+    
+    //トップ画面の表示
+    @GetMapping(value = "/user/top")
+    public String displayTop(Model model) {
+        model.addAttribute("userAddRequest", new UserAddRequest());
+        return "user/top";
+    }
+    
 	
     /**
      * ユーザー新規登録
@@ -53,8 +62,9 @@ public class UserInfoController {
         }
         // ユーザー情報が登録できた場合
         userInfoService.save(userRequest);
-        return "redirect:/user/signin"; //トップ画面へ遷移するように変更
+        return "redirect:/user/top"; //トップ画面へ遷移するように変更
     }
+    
 	
 }
 
