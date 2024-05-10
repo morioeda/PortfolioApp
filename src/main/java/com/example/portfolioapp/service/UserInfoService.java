@@ -20,7 +20,9 @@ public class UserInfoService {
      */
     public void save(UserAddRequest userAddRequest) {
         userInfoMapper.save(userAddRequest);
+        
+        }
+        
     }
 	
 
-}

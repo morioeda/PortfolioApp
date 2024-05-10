@@ -10,7 +10,7 @@
         <div th:if="${validationError}" th:each="error : ${validationError}">
             <label class="text-danger" th:text="${error}"></label>
         </div>
-        <h1>ユーザー新規登録</h1>
+        <h1>新規登録</h1>
         <form th:action="@{/user/signin}" th:object="${userAddRequest}" th:method="post">
             
 			

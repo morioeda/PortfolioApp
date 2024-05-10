@@ -19,7 +19,7 @@ public class UserInfo implements Serializable{
     private String name;
 
     //自己紹介
-    private String self_introduction;
+    private String self_introduction = "自己紹介を追加してください";
 
     //パスワード
     private String password;

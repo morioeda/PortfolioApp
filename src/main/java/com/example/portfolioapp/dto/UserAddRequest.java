@@ -24,6 +24,9 @@ public class UserAddRequest implements Serializable {
     @Email
     private String email;
     
+    // 自己紹介
+    @Size(max = 200, message = "自己紹介は200文字以内で入力してください")
+    private String self_introduction;
 
     
      //パスワード
@@ -32,6 +35,7 @@ public class UserAddRequest implements Serializable {
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])[0-9a-zA-Z]+$", message = "パスワードは数字と文字を含む必要があります")
     private String password;
     
-    
+ 
+ 
     
 }
