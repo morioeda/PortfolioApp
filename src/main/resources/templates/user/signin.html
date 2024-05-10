@@ -8,6 +8,12 @@
 	</head>
 
 <body>
+	<header>
+		<div class="header-logo">My Portfolio</div>
+		<div class="header-login">
+			<a href="#" class="login">ログイン</a></div>
+	</header>
+	
     <div class="container">
         <div th:if="${validationError}" th:each="error : ${validationError}">
             <label class="text-danger" th:text="${error}"></label>
@@ -17,23 +23,20 @@
             
 			
 			<div class="form-group">
-                <label>氏名</label>
-                <input type="text" th:field="*{name}" class="form-control">
-            </div>
-			
-            <div class="form-group">
-                <label>メールアドレス</label>
+				<div class="content">
+                <p class="name">氏名</p>
+         <input type="text" th:field="*{name}" class="form-control">
+				</div>
+				<div class="content">
+                <p>メールアドレス</p>
                 <input type="text" th:field="*{email}" class="form-control">
-            </div>
-            
-			<div class="form-group">
-                <label>パスワード</label>
+				</div>
+				<div class="content">
+                <p>パスワード</p>
                 <input type="text" th:field="*{password}" class="form-control">
-            </div>
-            <br />
+				</div>
             
-			<div class="text-center">
-                <input type="submit" value="登録" class="btn btn-primary">
+                <input type="submit" value="登録する" class="btn btn-primary">
             </div>
         </form>
     </div>

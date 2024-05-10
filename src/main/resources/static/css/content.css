@@ -1,5 +1,86 @@
 @charset "UTF-8";
 
+body{
+	margin:0;
+}
+
+header{
+	width: auto;
+	height: 120px;
+	background: rgba(27, 86, 120, 1);
+	font-family: Roboto;
+	padding: 0px 40px 0px 40px;
+	display: flex;
+	align-items: center;
+	margin:0;
+}
+
+.header-logo{
+	color: white;
+	font-size: 36px;
+	font-weight: 700;
+	display: block;
+	float: left;
+
+}
+
+.header-login{
+	background-color: white;
+
+	border-radius: 4px;
+	padding: 16px 40px;
+	margin-left: auto;
+}
+.login{
+	color: black;
+	text-decoration: none;
+	width: 72px;
+	height: 21px;
+
+}
+
+
 h1{
-	color: red;
+	color: #000000BF;
+	font-family: Roboto;
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 48.02px;
+
+}
+
+.container{
+	text-align: center;
+}
+
+.content {
+    text-align: left;
+}
+
+form{
+	width:480px;
+	margin:0 auto;
+}
+
+
+.form-control{
+	width: 480px;
+	height: 19px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    margin-bottom:48px;
+    padding:0px 2px
+}
+
+.btn{
+	width: 232px;
+	height: 53px;
+	padding: 16px 80px 16px 80px;
+	gap: 0px;
+	border-radius: 4px;
+	opacity: 0px;
+	background: rgba(27, 86, 120, 1);
+	color: white;
+	margin-top: 10px;
 }
