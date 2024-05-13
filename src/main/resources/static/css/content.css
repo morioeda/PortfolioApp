@@ -26,10 +26,16 @@ header{
 
 .header-login{
 	background-color: white;
-
 	border-radius: 4px;
 	padding: 16px 40px;
 	margin-left: auto;
+}
+
+header p{
+	color: white;
+	font-size: 36px;
+	text-align: center;
+	font-weight: 700;
 }
 .login{
 	color: black;
@@ -86,7 +92,6 @@ form{
 	background: rgba(27, 86, 120, 1);
 	color: white;
 	margin-top: 50px;
-	margin-bottom:80px;
 }
 
 footer.footer{
@@ -97,6 +102,7 @@ footer.footer{
 		z-index: 1000;
 		background-color: #1B5678;
 		color: white;
+		margin-top: 80px;
 }
 
 .footer-logo{

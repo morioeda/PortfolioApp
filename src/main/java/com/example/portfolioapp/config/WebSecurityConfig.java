@@ -19,7 +19,7 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(authorize ->{
 			authorize
 			.requestMatchers("/").permitAll()
-			.requestMatchers("/user/**").permitAll()
+			.requestMatchers("/user/**").permitAll()//userフォルダ配下のものは全て認証無にアクセス可
 			.requestMatchers("/css/**").permitAll()
 			.anyRequest().authenticated();
 			
