@@ -55,6 +55,7 @@ h1{
 
 .content {
     text-align: left;
+    margin-top: 20px;
 }
 
 form{
@@ -62,15 +63,17 @@ form{
 	margin:0 auto;
 }
 
+.form-group{
+	text-align: center;
+}
 
 .form-control{
 	width: 480px;
-	height: 19px;
+	height: 30px;
     border: none;
     border-bottom: 1px solid #ccc;
     outline: none;
-    margin-bottom:48px;
-    padding:0px 2px
+    padding:0px 2px;
 }
 
 .btn{
@@ -82,7 +85,7 @@ form{
 	opacity: 0px;
 	background: rgba(27, 86, 120, 1);
 	color: white;
-	margin-top: 10px;
+	margin-top: 50px;
 	margin-bottom:80px;
 }
 
@@ -102,4 +105,8 @@ footer.footer{
 		display: flex;
 		justify-content: center;
 		align-items: center;
+}
+
+.error-message{
+	color: red;
 }
