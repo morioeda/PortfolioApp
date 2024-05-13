@@ -65,7 +65,11 @@ public class UserInfoController {
         return "redirect:/user/top"; //トップ画面へ遷移するように変更
     }
     
-	
+	//ログイン画面の表示
+    @RequestMapping("/user/login")
+    public String displayLogin(Model model) {
+    	return "user/login";
+    }
 }
 
 
