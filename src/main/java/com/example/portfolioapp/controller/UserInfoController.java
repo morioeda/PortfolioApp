@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,8 +38,9 @@ public class UserInfoController {
     
     //トップ画面の表示
     @GetMapping(value = "/user/top")
-    public String displayTop(Model model) {
+    public String displayTop(Authentication loginUser,Model model) {
         model.addAttribute("userAddRequest", new UserAddRequest());
+        model.addAttribute("username", loginUser.getName());
         return "user/top";
     }
     
@@ -70,6 +72,8 @@ public class UserInfoController {
     public String displayLogin(Model model) {
     	return "user/login";
     }
+    
+
 }
 
 

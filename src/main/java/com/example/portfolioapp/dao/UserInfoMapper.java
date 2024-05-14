@@ -12,5 +12,7 @@ public interface UserInfoMapper {
      * @param userRequest 登録用リクエストデータ
      */
      void save(UserAddRequest userRequest);
+     
+     public UserInfo findByName(String name);
 
 }
