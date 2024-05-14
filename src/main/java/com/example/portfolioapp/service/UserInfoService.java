@@ -5,10 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
 import com.example.portfolioapp.dao.UserInfoMapper;
 import com.example.portfolioapp.dto.UserAddRequest;
-
+import com.example.portfolioapp.entity.UserInfo;
 
 
 @Service
@@ -34,29 +33,3 @@ public class UserInfoService {
         userInfoMapper.save(userAddRequest);
     }
 }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

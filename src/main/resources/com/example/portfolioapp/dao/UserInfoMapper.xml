@@ -10,13 +10,4 @@
         VALUES
             (#{email}, #{name},#{self_introduction},#{password},CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP)
     </insert>
-    
-    <select id="findByName" parameterType="String" resultType="com.example.entity.UserInfo">
-  SELECT id, name, password, authority
-  FROM users
-  WHERE name = #{name}
-</select>
-
-
-    
    </mapper>

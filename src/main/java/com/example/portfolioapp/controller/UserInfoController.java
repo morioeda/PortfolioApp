@@ -20,7 +20,7 @@ import com.example.portfolioapp.service.UserInfoService;
 @Controller
 public class UserInfoController {
 	
-	@Autowired
+    @Autowired
     private UserInfoService userInfoService;
 	
     /**
@@ -70,7 +70,6 @@ public class UserInfoController {
     public String displayLogin(Model model) {
     	return "user/login";
     }
-
 }
 
 
