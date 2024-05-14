@@ -32,6 +32,8 @@ public class WebSecurityConfig {
 	                .anyRequest().authenticated()
 	            )
 	            .formLogin(form -> form
+	            	.usernameParameter("email")
+	            	.passwordParameter("password")
 	                .loginPage("/user/login")
 	                .defaultSuccessUrl("/user/top", true)
 	                
@@ -47,10 +49,8 @@ public class WebSecurityConfig {
 	                // パスワードエンコードを行わない設定
 	                .passwordEncoder(NoOpPasswordEncoder.getInstance());
 	    }
-
 	  
-	
-	
+	  
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();

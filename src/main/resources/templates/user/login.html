@@ -16,6 +16,7 @@
 		<h1>ログイン</h1>
 		<div class="form-group">
 			<div class="content">
+				
 		<form th:action="@{/user/login}" method="post">
 			<p>メールアドレス</p>
 			<input type="text" name="email" class="form-control"/>
@@ -23,9 +24,9 @@
 			<input type="password" name="password" class="form-control"/>
 			
 			</div>
-			<input type="submit" value="ログイン" class="btn btn-primary"/>
+			<input type="submit" value="ログインする" class="btn btn-primary"/>
 			<br>
-			<input type="button" onclick="location.href='./signin'" value="新規登録" class="btn btn-primary">
+			<input type="button" onclick="location.href='./signin'" value="新規登録する" class="btn btn-primary">
 		</form>
 		
 		</div>
