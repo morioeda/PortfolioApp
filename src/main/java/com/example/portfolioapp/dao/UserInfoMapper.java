@@ -12,5 +12,8 @@ public interface UserInfoMapper {
      * @param userRequest 登録用リクエストデータ
      */
      void save(UserAddRequest userRequest);
+     
+     //ユーザー検索
+     public UserInfo findByEmail(String email);
 
 }

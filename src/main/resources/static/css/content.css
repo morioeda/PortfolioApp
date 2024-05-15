@@ -2,6 +2,7 @@
 
 body{
 	margin:0;
+	font-family: Roboto;
 }
 
 header{
@@ -12,24 +13,40 @@ header{
 	padding: 0px 40px 0px 40px;
 	display: flex;
 	align-items: center;
-	margin:0;
+}
+
+.login-header{
+	width: auto;
+	height: 120px;
+	background: rgba(27, 86, 120, 1);
+	font-family: Roboto;
+	padding: 0px 40px 0px 40px;
+	display: flow-root;
 }
 
 .header-logo{
 	color: white;
 	font-size: 36px;
 	font-weight: 700;
-	display: block;
-	float: left;
+	
 
 }
 
 .header-login{
 	background-color: white;
-
 	border-radius: 4px;
 	padding: 16px 40px;
 	margin-left: auto;
+	transition: 0.3s;
+}
+
+
+header p{
+	color: white;
+	font-size: 36px;
+	text-align: center;
+	font-weight: 700;
+	
 }
 .login{
 	color: black;
@@ -45,12 +62,13 @@ h1{
 	font-family: Roboto;
 	font-size: 36px;
 	font-weight: 400;
-	margin: 80px;
+	margin-top: 80px;
 
 }
 
 .container{
 	text-align: center;
+	margin-bottom: 100px;
 }
 
 .content {
@@ -58,6 +76,10 @@ h1{
     margin-top: 20px;
 }
 
+.content p{
+	margin-top:40px
+	
+}
 form{
 	width:480px;
 	margin:0 auto;
@@ -86,9 +108,13 @@ form{
 	background: rgba(27, 86, 120, 1);
 	color: white;
 	margin-top: 50px;
-	margin-bottom:80px;
+	transition: 0.3s;
 }
 
+.btn:hover{
+	opacity: 0.8;
+	
+}
 footer.footer{
 		position: fixed;
 		bottom: 0;
@@ -97,6 +123,7 @@ footer.footer{
 		z-index: 1000;
 		background-color: #1B5678;
 		color: white;
+		margin-top: 100px;
 }
 
 .footer-logo{

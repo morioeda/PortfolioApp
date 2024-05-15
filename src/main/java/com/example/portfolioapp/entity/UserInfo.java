@@ -1,15 +1,22 @@
 package com.example.portfolioapp.entity;
 
 import java.io.Serializable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.Date;
 import lombok.Data;
 
 //ユーザー情報 Entity
+@Table(name = "users")
+@Entity
 @Data
 public class UserInfo implements Serializable{
 	
 	
 	//ID
+	@Id
     private Long id;
 
     //メールアドレス
