@@ -37,6 +37,7 @@ header{
 	border-radius: 4px;
 	padding: 16px 40px;
 	margin-left: auto;
+	transition: 0.3s;
 }
 
 
@@ -107,6 +108,7 @@ form{
 	background: rgba(27, 86, 120, 1);
 	color: white;
 	margin-top: 50px;
+	transition: 0.3s;
 }
 
 .btn:hover{

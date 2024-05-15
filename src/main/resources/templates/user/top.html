@@ -3,9 +3,15 @@
 	<head>
 	<title th:text="${title}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link th:href="@{/css/content.css}" rel="stylesheet">
 	</head>
 
 <body>
+	<header>
+			<div class="header-logo">My Portfolio</div>
+			<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
+		</header>
    <h1>トップページです</h1>
+   
 </body>
 </html>
