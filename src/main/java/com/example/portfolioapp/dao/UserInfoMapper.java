@@ -13,6 +13,7 @@ public interface UserInfoMapper {
      */
      void save(UserAddRequest userRequest);
      
-     public UserInfo findByName(String name);
+     //ユーザー検索
+     public UserInfo findByEmail(String email);
 
 }
