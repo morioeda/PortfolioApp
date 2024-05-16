@@ -73,6 +73,12 @@ public class UserInfoController {
     	return "user/login";
     }
     
+    //自己紹介編集画面の表示
+    @RequestMapping("/user/textedit")
+    public String displayEdit(Model model) {
+    	return "user/textedit";
+    }
+
 
 }
 

@@ -10,8 +10,33 @@
 	<header>
 			<div class="header-logo">My Portfolio</div>
 			<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
-		</header>
-   <h1>トップページです</h1>
-   
+	</header>
+	
+	<div class="container">
+		
+		<section class="section-wrap">
+				
+			<div class="profile">
+				<p class="circle-img"><img th:src="@{/img/profileimgdummy.png}" alt="ユーザーのプロフィール写真"></p>
+				<p class="username ">ユーザーネーム</p>
+			</div><!--profile div-->
+			
+			<div class="section-body">
+				<h2 class="section-title">自己紹介</h2>
+				<p class="self-introduction">自己紹介文</p>
+				<input type="button" onclick="location.href='./textedit'" value="自己紹介を編集する" class="edit-btn">
+			</div><!-- section-body div-->
+			
+		</section>
+
+	</div><!--container div-->
+	
+	<footer class="footer">
+		<div class="footer-logo">
+			<p>portfolio site</p>
+		</div>
+	</footer>
+
+
 </body>
 </html>
