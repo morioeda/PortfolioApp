@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.service.UserInfoService;
 
@@ -41,6 +42,13 @@ public class UserInfoController {
     public String displayTop(Authentication loginUser,Model model) {
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("username", loginUser.getName());
+        
+        // CustomUserDetailsオブジェクトを取得
+        CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        //ユーザー名をモデルに追加
+        model.addAttribute("userAddRequest", new UserAddRequest());
+        model.addAttribute("username", userDetails.getName());
+        
         return "user/top";
     }
     
@@ -78,7 +86,8 @@ public class UserInfoController {
     public String displayEdit(Model model) {
     	return "user/textedit";
     }
-
+    
+    
 
 }
 

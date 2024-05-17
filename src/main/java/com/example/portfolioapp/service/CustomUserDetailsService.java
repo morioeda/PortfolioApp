@@ -2,6 +2,8 @@ package com.example.portfolioapp.service;
 
 import lombok.RequiredArgsConstructor;  // lombokのRequiredArgsConstructorをインポート
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;  // Spring SecurityのUserDetailsをインポート
 import org.springframework.security.core.userdetails.UserDetailsService;  // Spring SecurityのUserDetailsServiceをインポート
@@ -12,6 +14,7 @@ import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.entity.UserInfo;
 import com.example.portfolioapp.repository.UserRepository;
 
+import java.util.Collection;
 import java.util.Collections;  // JavaのCollectionsクラスをインポート
 
 @Service
@@ -26,11 +29,14 @@ public class CustomUserDetailsService implements UserDetailsService{
         UserInfo userInfo = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
         
-        return User.builder()
-                .username(userInfo.getEmail()) // ユーザー名としてメールアドレスを使用
-                .password(userInfo.getPassword()) // ハッシュ化されたパスワード
-                .build();
-        }
+        Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
+
+        
+        //UserInfoオブジェクトのデータを利用してUserDetailsオブジェクトを作成。ユーザー認証に使用
+      
+    return new CustomUserDetails(userInfo.getEmail(), userInfo.getPassword(), authorities, userInfo.getName());
+}
+
 
 
 }

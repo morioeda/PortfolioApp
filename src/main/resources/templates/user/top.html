@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"　
+	　xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	
+	 <head>
 	<title th:text="${title}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link th:href="@{/css/content.css}" rel="stylesheet">
@@ -14,11 +16,12 @@
 	
 	<div class="container">
 		
+		
 		<section class="section-wrap">
 				
 			<div class="profile">
 				<p class="circle-img"><img th:src="@{/img/profileimgdummy.png}" alt="ユーザーのプロフィール写真"></p>
-				<p class="username ">ユーザーネーム</p>
+				<p th:text="${username}" class="username">ユーザー名</p>
 			</div><!--profile div-->
 			
 			<div class="section-body">
@@ -33,7 +36,7 @@
 	
 	<footer class="footer">
 		<div class="footer-logo">
-			<p>portfolio site</p>
+			<p th:text="${username}" class="footer-logo">ユーザー名</p>
 		</div>
 	</footer>
 

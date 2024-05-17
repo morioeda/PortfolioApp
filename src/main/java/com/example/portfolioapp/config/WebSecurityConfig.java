@@ -38,7 +38,7 @@ public class WebSecurityConfig {
 	                .defaultSuccessUrl("/user/top", true)
 	                
 	            );
-	            
+
 
 	        return http.build();
 	    }
