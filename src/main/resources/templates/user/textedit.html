@@ -4,9 +4,42 @@
 	<title th:text="${title}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link th:href="@{/css/content.css}" rel="stylesheet">
-
 	</head>
+	
 <body>
-<h1>自己紹介編集ページ</h1>
+	<header>
+		<div class="header-logo">My Portfolio</div>
+		<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
+	</header>
+	
+	<div class="container">
+		<h1>自己紹介を編集する</h1>
+		
+		<form th:action="@{/user/textedit}" th:object="${userAddRequest}" th:method="post">
+			
+			<div class="form-group">
+				
+				<div class="content">
+					<p>自己紹介文</p>
+					<textarea th:field="*{self_introduction}" class="textarea"></textarea>
+					<div th:if="${#fields.hasErrors('self_introduction')}" class="error-message">
+						<p th:each="error : ${#fields.errors('self_introduction')}" th:text="${error}"></p>
+					</div>
+					
+					<p>アバター画像</p>
+				</div><!-- content div-->
+				
+				<input type="submit" value="自己紹介を確定する" class="btn btn-primary">
+			</div><!-- form-group div-->
+			
+		</form>
+		
+		
+	<footer class="footer">
+		<div class="footer-logo">
+			<p th:text="${hoge}" class="footer-logo">ユーザー名</p>
+		</div>
+	</footer>
+
 </body>
 </html>

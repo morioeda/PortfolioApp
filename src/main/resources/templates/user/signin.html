@@ -22,17 +22,18 @@
 			<div class="form-group">
 			<div class="content">
                <p class="name">氏名</p>
-       		 	  <input type="text" th:field="*{name}" class="form-control">
-			 		 <div th:if="${#fields.hasErrors('name')}" class="error-message">
-					 <p th:each="error : ${#fields.errors('name')}" th:text="${error}"></p></div>
+       		   <input type="text" th:field="*{name}" class="form-control">
+			 	<div th:if="${#fields.hasErrors('name')}" class="error-message">
+					<p th:each="error : ${#fields.errors('name')}" th:text="${error}"></p>
+				</div>
 			</div>	
-				<div class="content">
+			<div class="content">
                 <p>メールアドレス</p>
                 <input type="text" th:field="*{email}" class="form-control">
 				<div th:if="${#fields.hasErrors('email')}" class="error-message">
-				<p th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
+					<p th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
 				</div>
-				</div>
+			</div>
 				<div class="content">
                 <p>パスワード</p>
                 <input type="text" th:field="*{password}" class="form-control">

@@ -120,10 +120,41 @@ public class UserInfoController {
     	return "user/login";
     }
     
+    
+    
     //自己紹介編集画面の表示
-    @RequestMapping("/user/textedit")
-    public String displayEdit(Model model) {
-    	return "user/textedit";
+    @GetMapping(value = "/user/textedit")
+    public String displayEdit(Authentication loginUser,Model model) {
+        model.addAttribute("userAddRequest", new UserAddRequest());
+        
+        // CustomUserDetailsオブジェクトを取得
+        CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
+        model.addAttribute("userAddRequest", new UserAddRequest());
+        model.addAttribute("hoge", userDetails.getName());
+        
+        return "user/textedit";
+    }
+    
+    //自己紹介の編集
+    @RequestMapping(value="/user/textedit", method=RequestMethod.POST)
+    public String edit(@Validated @ModelAttribute UserAddRequest userRequest,BindingResult result, Model model) {
+    	//入力チェック
+    	 if (result.hasErrors()) {
+             // 入力チェックエラーの場合
+             List<String> errorList = new ArrayList<String>();
+             for (ObjectError error : result.getAllErrors()) {
+                 errorList.add(error.getDefaultMessage());
+             }
+             
+             model.addAttribute("validationError", errorList);
+             return "user/textedit";
+         }
+         
+         // ユーザー情報をDBへ登録
+         userInfoService.save(userRequest);
+         
+         return "redirect:/user/top";
     }
     
     

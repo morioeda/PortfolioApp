@@ -13,6 +13,7 @@ import com.example.portfolioapp.entity.UserInfo;
 @Service
 public class UserInfoService {
 	
+	//DBに対する操作を行うためのマッパークラス。これを使って、DBにデータを保存。
     @Autowired
     private UserInfoMapper userInfoMapper;
     
