@@ -123,6 +123,9 @@ form{
 	font-size: 18px;
 }
 
+.edit-btn:hover{
+	opacity: 0.8;
+}
 .btn:hover{
 	opacity: 0.8;
 	
@@ -168,6 +171,7 @@ footer.footer{
 	width: 520px;
 	text-align: left;
 	margin-left: 80px;
+	margin-bottom: 50px;
 }
 
 .self-introduction{
@@ -186,4 +190,6 @@ footer.footer{
 .username{
 	text-align: center;
     display: inline;
+    font-size: 20px;
+    font-weight: 400;
 }

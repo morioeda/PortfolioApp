@@ -28,18 +28,26 @@ public class WebSecurityConfig {
 	            .authorizeHttpRequests(authorize -> authorize
 	                .requestMatchers("/").permitAll()
 	                .requestMatchers("/user/login","/user/signin").permitAll()
-	                .requestMatchers("/css/**").permitAll()
+	                .requestMatchers("/static/**").permitAll()
 	                .anyRequest().authenticated()
 	            )
+	            
 	            .formLogin(form -> form
 	            	.usernameParameter("email")
 	            	.passwordParameter("password")
 	                .loginPage("/user/login")
 	                .defaultSuccessUrl("/user/top", true)
-	                
-	            );
-
-
+	               )
+	            
+	            .logout((logout)-> logout
+	       	         .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) //
+	       	         .logoutUrl("/logout") //ログアウトのURL
+	       	         .logoutSuccessUrl("/user/login") //ログアウト成功後のURL
+	       	         .deleteCookies("JSESSIONID")
+	       	         .invalidateHttpSession(true).permitAll()
+	       	         );
+	  
+	        
 	        return http.build();
 	    }
 	  

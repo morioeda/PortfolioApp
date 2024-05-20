@@ -16,17 +16,17 @@
 	
 	<div class="container">
 		
-		
+
 		<section class="section-wrap">
 				
 			<div class="profile">
 				<p class="circle-img"><img th:src="@{/img/profileimgdummy.png}" alt="ユーザーのプロフィール写真"></p>
-				<p th:text="${username}" class="username">ユーザー名</p>
+				<p th:text="${hoge}" class="username">ユーザー名</p>
 			</div><!--profile div-->
 			
 			<div class="section-body">
 				<h2 class="section-title">自己紹介</h2>
-				<p class="self-introduction">自己紹介文</p>
+				<p class="self-introduction"></p>
 				<input type="button" onclick="location.href='./textedit'" value="自己紹介を編集する" class="edit-btn">
 			</div><!-- section-body div-->
 			
@@ -36,7 +36,7 @@
 	
 	<footer class="footer">
 		<div class="footer-logo">
-			<p th:text="${username}" class="footer-logo">ユーザー名</p>
+			<p th:text="${hoge}" class="footer-logo">ユーザー名</p>
 		</div>
 	</footer>
 

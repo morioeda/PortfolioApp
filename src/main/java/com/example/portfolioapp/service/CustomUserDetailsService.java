@@ -29,12 +29,12 @@ public class CustomUserDetailsService implements UserDetailsService{
         UserInfo userInfo = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
         
+     // 権限を設定（ここでは簡単のため一つの権限のみ設定）
         Collection<? extends GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
-
         
         //UserInfoオブジェクトのデータを利用してUserDetailsオブジェクトを作成。ユーザー認証に使用
-      
-    return new CustomUserDetails(userInfo.getEmail(), userInfo.getPassword(), authorities, userInfo.getName());
+        
+        return new CustomUserDetails(userInfo.getEmail(), userInfo.getPassword(), authorities, userInfo.getName());
 }
 
 

@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,12 +26,18 @@ import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.service.UserInfoService;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class UserInfoController {
 	
     @Autowired
     private UserInfoService userInfoService;
 	
+    @Autowired
+    private UserDetailsService userDetailsService;
+    
     /**
      * ユーザー新規登録画面を表示
      * @param model Model
@@ -40,14 +53,16 @@ public class UserInfoController {
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
-        model.addAttribute("userAddRequest", new UserAddRequest());
-        model.addAttribute("username", loginUser.getName());
+        
+    	model.addAttribute("userAddRequest", new UserAddRequest());
+        //emailをモデルに追加。${email}でメアドを表示出来る。
+        model.addAttribute("email", loginUser.getName());
         
         // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
-        model.addAttribute("username", userDetails.getName());
+        model.addAttribute("hoge", userDetails.getName());
         
         return "user/top";
     }
@@ -56,22 +71,46 @@ public class UserInfoController {
     /**
      * ユーザー新規登録
      * @param userRequest リクエストデータ
-     * @param model Model
+     * @param model 
      * @return ユーザー情報一覧画面
      */
     @RequestMapping(value = "/user/signin", method = RequestMethod.POST)
-    public String create(@Validated @ModelAttribute UserAddRequest userRequest, BindingResult result, Model model) {
+    public String create(@Validated @ModelAttribute UserAddRequest userRequest, BindingResult result, Model model,HttpServletRequest request) {
         if (result.hasErrors()) {
             // 入力チェックエラーの場合
             List<String> errorList = new ArrayList<String>();
             for (ObjectError error : result.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());
             }
+            
             model.addAttribute("validationError", errorList);
             return "user/signin";
         }
-        // ユーザー情報が登録できた場合
+        
+        // ユーザー情報をDBへ登録
         userInfoService.save(userRequest);
+        
+        //新規登録後自動的にログインさせる
+        try {
+            // 保存されたユーザー情報を使ってUserDetailsを取得
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userRequest.getEmail());
+            
+            // 認証トークンを作成
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                    userDetails, userRequest.getPassword(), userDetails.getAuthorities());
+
+            // セキュリティコンテキストに認証情報を設定
+            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+
+            // HttpServletRequestを使ってユーザーをログインさせる
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "user/top"; // ログインページにリダイレクト
+        }
+        
+        
         return "redirect:/user/top"; //トップ画面へ遷移するように変更
     }
     
