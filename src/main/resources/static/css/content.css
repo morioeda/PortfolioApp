@@ -99,7 +99,7 @@ form{
 }
 
 .btn{
-	width: 232px;
+	width: auto;
 	height: 53px;
 	padding: 16px 80px 16px 80px;
 	gap: 0px;
@@ -111,6 +111,21 @@ form{
 	transition: 0.3s;
 }
 
+.edit-btn{
+	width: 242px;
+	height: 53px;
+	gap: 0px;
+	border-radius: 4px;
+	opacity: 0px;
+	background: rgba(27, 86, 120, 1);
+	color: white;
+	transition: 0.3s;
+	font-size: 18px;
+}
+
+.edit-btn:hover{
+	opacity: 0.8;
+}
 .btn:hover{
 	opacity: 0.8;
 	
@@ -136,4 +151,45 @@ footer.footer{
 
 .error-message{
 	color: red;
+}
+
+.section-wrap{
+	display: flex;
+	justify-content: center;
+	margin-top: 80px;
+	align-items: center;
+}
+
+.section-title{
+	font-size: 36px;
+	font-weight: 700;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+	padding: 0px 0px 20px 0px;
+}
+
+.section-body{
+	width: 520px;
+	text-align: left;
+	margin-left: 80px;
+	margin-bottom: 50px;
+}
+
+.self-introduction{
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 27px;
+    height: 81px;
+}
+
+.circle-img img{
+	width: 360px;
+	height: 360px;
+	border-radius: 50%;
+	object-fit:cover ;
+}
+.username{
+	text-align: center;
+    display: inline;
+    font-size: 20px;
+    font-weight: 400;
 }

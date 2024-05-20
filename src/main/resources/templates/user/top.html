@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"　
+	　xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	
+	 <head>
 	<title th:text="${title}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link th:href="@{/css/content.css}" rel="stylesheet">
@@ -10,8 +12,34 @@
 	<header>
 			<div class="header-logo">My Portfolio</div>
 			<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
-		</header>
-   <h1>トップページです</h1>
-   
+	</header>
+	
+	<div class="container">
+		
+
+		<section class="section-wrap">
+				
+			<div class="profile">
+				<p class="circle-img"><img th:src="@{/img/profileimgdummy.png}" alt="ユーザーのプロフィール写真"></p>
+				<p th:text="${hoge}" class="username">ユーザー名</p>
+			</div><!--profile div-->
+			
+			<div class="section-body">
+				<h2 class="section-title">自己紹介</h2>
+				<p class="self-introduction"></p>
+				<input type="button" onclick="location.href='./textedit'" value="自己紹介を編集する" class="edit-btn">
+			</div><!-- section-body div-->
+			
+		</section>
+
+	</div><!--container div-->
+	
+	<footer class="footer">
+		<div class="footer-logo">
+			<p th:text="${hoge}" class="footer-logo">ユーザー名</p>
+		</div>
+	</footer>
+
+
 </body>
 </html>
