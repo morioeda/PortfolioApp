@@ -27,8 +27,10 @@ import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.service.UserInfoService;
 
+import ch.qos.logback.classic.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class UserInfoController {
@@ -54,6 +56,7 @@ public class UserInfoController {
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
+    
         
     	model.addAttribute("userAddRequest", new UserAddRequest());
         //emailをモデルに追加。${email}でメアドを表示出来る。
@@ -68,7 +71,6 @@ public class UserInfoController {
         return "user/top";
     }
     
-	
     /**
      * ユーザー新規登録
      * @param userRequest リクエストデータ
@@ -130,6 +132,8 @@ public class UserInfoController {
         // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
         
+       
+        
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
@@ -151,8 +155,13 @@ public class UserInfoController {
              model.addAttribute("validationError", errorList);
              return "user/textedit";
          }	 
+    	 
+    	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+
          // ユーザー情報をDBへ登録
-         userInfoService.update(userRequest);
+         UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
+         userInfoService.update(userDetails.getUsername(), userUpdateRequest.getSelfIntroduction());
          
          return "redirect:/user/top";
     }

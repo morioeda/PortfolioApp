@@ -14,4 +14,12 @@ public class UserUpdateRequest implements Serializable{
 	@Size(min = 50,max = 200, message = "50文字以上、200文字以下で入力してください")
     private String self_introduction;
 	
+	
+	public String getSelfIntroduction() { //ゲッターメソッドを定義
+    	return self_introduction;
+    }
+	
+	public void setSelfIntroduction(String self_introduction) {
+		this.self_introduction = self_introduction; 
+	}
 }

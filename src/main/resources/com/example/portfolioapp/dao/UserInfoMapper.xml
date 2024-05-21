@@ -22,7 +22,6 @@
         update users
         set self_introduction = #{self_introduction}
        <!-- where name = #{name} --> 
-          
  </update>
 
    </mapper>
