@@ -17,4 +17,12 @@
   WHERE email = #{email}
 </select>
 
+<!-- 自己紹介文の追加 -->
+ <update id="update">
+        update users
+        set self_introduction = #{self_introduction}
+       <!-- where name = #{name} --> 
+          
+ </update>
+
    </mapper>

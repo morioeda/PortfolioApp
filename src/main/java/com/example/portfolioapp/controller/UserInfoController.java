@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.UserAddRequest;
+import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.service.UserInfoService;
 
 import jakarta.servlet.ServletException;
@@ -125,10 +126,10 @@ public class UserInfoController {
     //自己紹介編集画面の表示
     @GetMapping(value = "/user/textedit")
     public String displayEdit(Authentication loginUser,Model model) {
-        model.addAttribute("userAddRequest", new UserAddRequest());
         
         // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
@@ -138,7 +139,7 @@ public class UserInfoController {
     
     //自己紹介の編集
     @RequestMapping(value="/user/textedit", method=RequestMethod.POST)
-    public String edit(@Validated @ModelAttribute UserAddRequest userRequest,BindingResult result, Model model) {
+    public String edit(@Validated @ModelAttribute UserUpdateRequest userRequest,BindingResult result, Model model) {
     	//入力チェック
     	 if (result.hasErrors()) {
              // 入力チェックエラーの場合
@@ -149,10 +150,9 @@ public class UserInfoController {
              
              model.addAttribute("validationError", errorList);
              return "user/textedit";
-         }
-         
+         }	 
          // ユーザー情報をDBへ登録
-         userInfoService.save(userRequest);
+         userInfoService.update(userRequest);
          
          return "redirect:/user/top";
     }

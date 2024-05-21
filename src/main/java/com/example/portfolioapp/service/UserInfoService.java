@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.portfolioapp.dao.UserInfoMapper;
 import com.example.portfolioapp.dto.UserAddRequest;
+import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.entity.UserInfo;
 
 
@@ -32,5 +33,10 @@ public class UserInfoService {
         String encodedPassword = passwordEncoder.encode(userAddRequest.getPassword());
         userAddRequest.setPassword(encodedPassword);
         userInfoMapper.save(userAddRequest);
+    }
+    
+    //自己紹介文の追加
+    public void update(UserUpdateRequest userUpdateRequest) {
+    	userInfoMapper.update(userUpdateRequest);
     }
 }
