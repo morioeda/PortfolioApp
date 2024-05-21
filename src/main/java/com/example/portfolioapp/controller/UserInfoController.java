@@ -162,6 +162,7 @@ public class UserInfoController {
          // ユーザー情報をDBへ登録
          UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
          userInfoService.update(userDetails.getUsername(), userUpdateRequest.getSelfIntroduction());
+//         userInfoService.update(userRequest); これにすると自己紹介編集画面で入力した情報がDBに登録される。※1
          
          return "redirect:/user/top";
     }

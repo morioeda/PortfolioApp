@@ -52,5 +52,8 @@ public class UserInfoService {
         UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
 		userInfoMapper.update(userUpdateRequest);
     }
+	/* public void update(UserUpdateRequest userUpdateRequest) {
+	userInfoMapper.update(userUpdateRequest);
+	}　※1 このコードだとDBに登録出来るが、レコードを指定することが出来ない*/
     
 }
