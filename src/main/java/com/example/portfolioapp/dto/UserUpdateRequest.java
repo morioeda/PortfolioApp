@@ -9,6 +9,10 @@ import lombok.Data;
 @Data
 public class UserUpdateRequest implements Serializable{
 	
+	
+	//IDの追加
+	private Long id;
+	
 	//自己紹介文
 	@NotEmpty
 	@Size(min = 50,max = 200, message = "50文字以上、200文字以下で入力してください")

@@ -135,9 +135,9 @@ public class UserInfoController {
        
         
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
-        model.addAttribute("userAddRequest", new UserAddRequest());
+        model.addAttribute("userUpdateRequest", new UserUpdateRequest());//Addになっていたので修正
         model.addAttribute("hoge", userDetails.getName());
-        
+        model.addAttribute("id",userDetails.getId());//Idを取得し、Viewに渡す        
         return "user/textedit";
     }
     
@@ -156,6 +156,7 @@ public class UserInfoController {
              return "user/textedit";
          }	 
     	 
+    	 //現在ログインしているユーザー情報の首都k
     	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
          CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
 

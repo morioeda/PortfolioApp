@@ -15,7 +15,8 @@
 	<div class="container">
 		<h1>自己紹介を編集する</h1>
 		
-		<form th:action="@{/user/textedit}" th:object="${userAddRequest}" th:method="post">
+<!--		th:objectがAddになっていたので修正-->
+		<form th:action="@{/user/textedit}" th:object="${userUpdateRequest}" th:method="post"> 
 			
 			<div class="form-group">
 				
@@ -25,6 +26,9 @@
 					<div th:if="${#fields.hasErrors('self_introduction')}" class="error-message">
 						<p th:each="error : ${#fields.errors('self_introduction')}" th:text="${error}"></p>
 					</div>
+					
+<!--					idを追記、UserUpdateにidフィールドを追加-->
+					<input type="hidden" th:field="*{id}" />
 					
 					<p>アバター画像</p>
 				</div><!-- content div-->

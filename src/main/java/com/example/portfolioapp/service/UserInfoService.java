@@ -49,8 +49,8 @@ public class UserInfoService {
         userInfo.setSelf_introduction(selfIntroduction);
         userRepository.save(userInfo);
         
-        UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
-		userInfoMapper.update(userUpdateRequest);
+		/*  UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
+		userInfoMapper.update(userUpdateRequest);*/
     }
 	/* public void update(UserUpdateRequest userUpdateRequest) {
 	userInfoMapper.update(userUpdateRequest);

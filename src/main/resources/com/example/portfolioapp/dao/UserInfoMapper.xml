@@ -21,7 +21,7 @@
  <update id="update">
         update users
         set self_introduction = #{self_introduction}
-       <!-- where name = #{name} --> 
+        where id = #{id}  
  </update>
 
    </mapper>
