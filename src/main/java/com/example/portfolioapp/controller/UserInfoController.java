@@ -156,14 +156,13 @@ public class UserInfoController {
              return "user/textedit";
          }	 
     	 
-    	 //現在ログインしているユーザー情報の首都k
-    	 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-         CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-
+    	 //現在ログインしているユーザー情報の取得※不要
+			/* Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			 CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+			*/
+    	 
          // ユーザー情報をDBへ登録
-         UserUpdateRequest userUpdateRequest = new UserUpdateRequest();
-         userInfoService.update(userDetails.getUsername(), userUpdateRequest.getSelfIntroduction());
-//         userInfoService.update(userRequest); これにすると自己紹介編集画面で入力した情報がDBに登録される。※1
+         userInfoService.update(userRequest); 
          
          return "redirect:/user/top";
     }

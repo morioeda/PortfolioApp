@@ -27,5 +27,6 @@ public class CustomUserDetails extends User {  // CustomUserDetailsクラスがU
     public Long getId() {
     	return id;
     }
+    
      
 }

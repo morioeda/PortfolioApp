@@ -17,7 +17,7 @@ public interface UserInfoMapper {
      //ユーザー検索
      public UserInfo findByEmail(String email);
      
-     //自己紹介文追加
+     //自己紹介文更新
      void update(UserUpdateRequest userUpdateRequest);
 
 }
