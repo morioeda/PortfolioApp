@@ -67,6 +67,7 @@ public class UserInfoController {
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
+        model.addAttribute("selfIntroduction", userDetails.getSelf_introduction());//自己紹介文をモデルに追加
         
         return "user/top";
     }
@@ -143,7 +144,7 @@ public class UserInfoController {
     
     //自己紹介の編集
     @RequestMapping(value="/user/textedit", method=RequestMethod.POST)
-    public String edit(@Validated @ModelAttribute UserUpdateRequest userRequest,BindingResult result, Model model) {
+    public String edit(@Validated @ModelAttribute UserUpdateRequest userRequest,BindingResult result, Model model,Authentication authentication) {
     	//入力チェック
     	 if (result.hasErrors()) {
              // 入力チェックエラーの場合
@@ -156,19 +157,25 @@ public class UserInfoController {
              return "user/textedit";
          }	 
     	 
-    	 //現在ログインしているユーザー情報の取得※不要
-			/* Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			 CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
-			*/
     	 
          // ユーザー情報をDBへ登録
-         userInfoService.update(userRequest); 
+         userInfoService.update(userRequest);
+         
+         //自己紹介文追加後のDB情報を表示させる
+         
+			/* authentication.getName()は、現在ログインしているユーザーのメールアドレスを返す
+			 userDetailsService.loadUserByUsernameメソッドを使って、メールアドレスに基づいてデータベースからユーザー情報を取得*/
+         CustomUserDetails updatedUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(authentication.getName());
+         
+         //セキュリティコンテキストを更新
+         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                 updatedUserDetails, authentication.getCredentials(), updatedUserDetails.getAuthorities());
+         SecurityContextHolder.getContext().setAuthentication(authToken);
+
+         
          
          return "redirect:/user/top";
     }
     
     
-
 }
-
-

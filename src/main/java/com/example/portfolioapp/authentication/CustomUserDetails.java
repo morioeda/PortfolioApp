@@ -11,12 +11,15 @@ public class CustomUserDetails extends User {  // CustomUserDetailsクラスがU
 	
 	private String name;//名前のフィールドを追加
 	private Long id;
+	private String selfIntroduction;
+
 
 		
-    public CustomUserDetails(String email, String password, Collection<? extends GrantedAuthority> authorities,String name,Long id) {
+    public CustomUserDetails(String email, String password, Collection<? extends GrantedAuthority> authorities,String name,Long id,String selfIntroduction) {
         super(email, password, authorities);  // 親クラスのコンストラクタを呼び出してインスタンスを初期化
         this.name = name;//フィールドの初期化
         this.id = id;
+        this.selfIntroduction = selfIntroduction;
       
     }
     
@@ -28,5 +31,7 @@ public class CustomUserDetails extends User {  // CustomUserDetailsクラスがU
     	return id;
     }
     
-     
+    public String getSelf_introduction(){
+    	return selfIntroduction;
+    }
 }
