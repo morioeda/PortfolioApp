@@ -24,10 +24,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.UserAddRequest;
+import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.service.UserInfoService;
 
+import ch.qos.logback.classic.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class UserInfoController {
@@ -53,6 +56,7 @@ public class UserInfoController {
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
+    
         
     	model.addAttribute("userAddRequest", new UserAddRequest());
         //emailをモデルに追加。${email}でメアドを表示出来る。
@@ -63,11 +67,11 @@ public class UserInfoController {
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
+        model.addAttribute("selfIntroduction", userDetails.getSelf_introduction());//自己紹介文をモデルに追加
         
         return "user/top";
     }
     
-	
     /**
      * ユーザー新規登録
      * @param userRequest リクエストデータ
@@ -120,14 +124,58 @@ public class UserInfoController {
     	return "user/login";
     }
     
+    
+    
     //自己紹介編集画面の表示
-    @RequestMapping("/user/textedit")
-    public String displayEdit(Model model) {
-    	return "user/textedit";
+    @GetMapping(value = "/user/textedit")
+    public String displayEdit(Authentication loginUser,Model model) {
+        
+        // CustomUserDetailsオブジェクトを取得
+        CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        
+       
+        
+        //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
+        model.addAttribute("userUpdateRequest", new UserUpdateRequest());//Addになっていたので修正
+        model.addAttribute("hoge", userDetails.getName());
+        model.addAttribute("id",userDetails.getId());//Idを取得し、Viewに渡す        
+        return "user/textedit";
+    }
+    
+    //自己紹介の編集
+    @RequestMapping(value="/user/textedit", method=RequestMethod.POST)
+    public String edit(@Validated @ModelAttribute UserUpdateRequest userRequest,BindingResult result, Model model,Authentication authentication) {
+    	//入力チェック
+    	 if (result.hasErrors()) {
+             // 入力チェックエラーの場合
+             List<String> errorList = new ArrayList<String>();
+             for (ObjectError error : result.getAllErrors()) {
+                 errorList.add(error.getDefaultMessage());
+             }
+             
+             model.addAttribute("validationError", errorList);
+             return "user/textedit";
+         }	 
+    	 
+    	 
+         // ユーザー情報をDBへ登録
+         userInfoService.update(userRequest);
+         
+         //自己紹介文追加後のDB情報を表示させる
+         
+			/* authentication.getName()は、現在ログインしているユーザーのメールアドレスを返す
+			 userDetailsService.loadUserByUsernameメソッドを使って、メールアドレスに基づいてデータベースからユーザー情報を取得*/
+         CustomUserDetails updatedUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(authentication.getName());
+         
+         //セキュリティコンテキストを更新
+         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                 updatedUserDetails, authentication.getCredentials(), updatedUserDetails.getAuthorities());
+         SecurityContextHolder.getContext().setAuthentication(authToken);
+
+         
+         
+         return "redirect:/user/top";
     }
     
     
-
 }
-
-

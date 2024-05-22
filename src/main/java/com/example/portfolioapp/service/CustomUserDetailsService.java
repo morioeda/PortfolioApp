@@ -34,9 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         
         //UserInfoオブジェクトのデータを利用してUserDetailsオブジェクトを作成。ユーザー認証に使用
         
-        return new CustomUserDetails(userInfo.getEmail(), userInfo.getPassword(), authorities, userInfo.getName());
-}
-
-
+        return new CustomUserDetails(userInfo.getEmail(), userInfo.getPassword(), authorities, userInfo.getName(),userInfo.getId(),userInfo.getSelf_introduction());
+    }
 
 }

@@ -26,7 +26,7 @@
 			
 			<div class="section-body">
 				<h2 class="section-title">自己紹介</h2>
-				<p class="self-introduction"></p>
+				<p th:text="${selfIntroduction}" class="self-introduction"></p><!--更新後の自己紹介文を表示-->
 				<input type="button" onclick="location.href='./textedit'" value="自己紹介を編集する" class="edit-btn">
 			</div><!-- section-body div-->
 			

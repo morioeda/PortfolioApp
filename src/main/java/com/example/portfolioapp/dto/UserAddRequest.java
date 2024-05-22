@@ -25,7 +25,7 @@ public class UserAddRequest implements Serializable {
     private String email;
     
     // 自己紹介
-    @Size(max = 200, message = "自己紹介は200文字以内で入力してください")
+    @Size(min = 50,max = 200, message = "50文字以上、200文字以下で入力してください")
     private String self_introduction;
 
     
