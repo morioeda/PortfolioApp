@@ -111,7 +111,7 @@ public class UserInfoController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return "user/top"; // ログインページにリダイレクト
+            return "user/top"; // トップページにリダイレクト
         }
         
         
@@ -177,5 +177,19 @@ public class UserInfoController {
          return "redirect:/user/top";
     }
     
+    
+    
+    //スキル編集ページの表示
+    @GetMapping(value = "/user/skilledit")
+    public String displaySkillEdit(Authentication loginUser,Model model) {
+    	   // CustomUserDetailsオブジェクトを取得
+        CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        //ユーザー名をモデルに追加
+        model.addAttribute("userAddRequest", new UserAddRequest());
+        model.addAttribute("hoge", userDetails.getName());
+        model.addAttribute("selfIntroduction", userDetails.getSelf_introduction());//自己紹介文をモデルに追加
+        
+        return "user/skilledit";
+    }
     
 }

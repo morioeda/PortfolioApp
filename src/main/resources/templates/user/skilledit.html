@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<title th:text="${title}"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link th:href="@{/css/content.css}" rel="stylesheet">
+	</head>
+	
+<body>
+	
+	<header>
+		<div class="header-logo">My Portfolio</div>
+		<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
+	</header>
+	
+	<div class="container">
+		
+		<div class="skill-wrapper">
+		<div class="select-month">
+			<select name="month">
+				<option value="9月">9月</option>
+				<option value="8月">8月</option>
+				<option value="7月">7月</option>
+			</select>
+		</div>
+					
+		<div class="skill-wrap">
+			<div class="skill-header">
+				<div class="skill-title">バックエンド</div>
+				<input type="button" onclick="location.href='./*'" value="項目を追加する" class="add-item"/>
+			</div>
+			
+			
+			<table class="table">
+				
+				<colgroup>
+				<col span="2" class="width-240" align="left">
+				<col span="2" class="width-200">
+				</colgroup>
+				
+				
+				<tbody>
+					<tr><!--タイトル部分（項目名・学習時間）-->
+						<th>項目名</th>
+						<th>学習時間</th>
+						<th></th>
+						<th></th>
+					</tr>
+					
+					<tr><!--1行目-->
+						<td class="item-title">Ruby</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+					
+					<tr><!--2行目-->
+						<td class="item-title">Rails</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+					
+					<tr class="border-remove"><!--3行目-->
+						<td	class="item-title">MySQL</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+				</tbody>
+				
+			</table>
+
+		</div>
+		
+		<div class="skill-wrap"><!--2個目-->
+			<div class="skill-header">
+				<div class="skill-title">フロントエンド</div>
+				<input type="button" onclick="location.href='./*'" value="項目を追加する" class="add-item"/>
+			</div>
+					
+			<table class="table">
+						
+				<colgroup>
+					<col span="2" class="width-240" align="left">
+					<col span="2" class="width-200">
+				</colgroup>
+						
+						
+				<tbody>
+					<tr><!--タイトル部分（項目名・学習時間）-->
+						<th>項目名</th>
+						<th>学習時間</th>
+						<th></th>
+						<th></th>
+					</tr>
+							
+					<tr><!--1行目-->
+						<td class="item-title">HTML</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+							
+					<tr><!--2行目-->
+						<td class="item-title">CSS</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+
+				</tbody>
+						
+			</table>
+					
+		</div>
+		<div class="skill-wrap"><!--3個目-->
+			<div class="skill-header">
+				<div class="skill-title">インフラ</div>
+				<input type="button" onclick="location.href='./*'" value="項目を追加する" class="add-item"/>
+			</div>
+			
+			
+			<table class="table">
+				
+				<colgroup>
+				<col span="2" class="width-240" align="left">
+				<col span="2" class="width-200">
+				</colgroup>
+				
+				
+				<tbody>
+					<tr><!--タイトル部分（項目名・学習時間）-->
+						<th>項目名</th>
+						<th>学習時間</th>
+						<th></th>
+						<th></th>
+					</tr>
+					
+					<tr><!--1行目-->
+						<td class="item-title">Heroku</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+					
+					<tr><!--2行目-->
+						<td class="item-title">AWS</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+					
+					<tr class="border-remove"><!--3行目-->
+						<td	class="item-title">Firebase</td>
+						<td><input type="number" class="study-hours"/></td>
+						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td><input type="button"value="削除する" class="delete"></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		
+		</div>
+
+	</div>
+</div
+>
+	
+	<footer class="footer">
+		<div class="footer-logo">
+			<p th:text="${hoge}" class="footer-logo">ユーザー名</p>
+		</div>
+	</footer>
+
+</body>
+</html>
