@@ -34,7 +34,7 @@
 					<p th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
 				</div>
 			</div>
-				<div class="content">
+			<div class="content">
                 <p>パスワード</p>
                 <input type="text" th:field="*{password}" class="form-control">
 				<div th:if="${#fields.hasErrors('password')}" class="error-message">

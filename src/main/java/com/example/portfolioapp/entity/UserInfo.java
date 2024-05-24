@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 //ユーザー情報 Entity
@@ -36,6 +38,8 @@ public class UserInfo implements Serializable{
 
     //更新日時
     private Date updated_at;
+    
+//    private List<SkillInfo> skillInfoList; ログイン時にエラーとなる為削除。
 	
 
 }

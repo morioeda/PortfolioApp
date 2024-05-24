@@ -1,6 +1,8 @@
 package com.example.portfolioapp.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.entity.UserInfo;
@@ -19,5 +21,8 @@ public interface UserInfoMapper {
      
      //自己紹介文更新
      void update(UserUpdateRequest userUpdateRequest);
+     
+     //項目追加
+     void add(SkillAddRequest skillAddRequest);
 
 }

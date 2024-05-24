@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -40,6 +41,9 @@ public class UserInfoController {
 	
     @Autowired
     private UserDetailsService userDetailsService;
+    
+    @Autowired
+    private AuthenticationManager authenticationManager;
     
     /**
      * ユーザー新規登録画面を表示
@@ -88,6 +92,8 @@ public class UserInfoController {
             }
             
             model.addAttribute("validationError", errorList);
+            System.out.println(model.getAttribute("validationError"));
+            
             return "user/signin";
         }
         
@@ -104,13 +110,13 @@ public class UserInfoController {
                     userDetails, userRequest.getPassword(), userDetails.getAuthorities());
 
             // セキュリティコンテキストに認証情報を設定
-            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authToken);
+            Authentication authentication = authenticationManager.authenticate(authToken);
+//            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // HttpServletRequestを使ってユーザーをログインさせる
-
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return "user/top"; // トップページにリダイレクト
         }
         
@@ -133,7 +139,6 @@ public class UserInfoController {
         // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
         
-       
         
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
         model.addAttribute("userUpdateRequest", new UserUpdateRequest());//Addになっていたので修正
@@ -171,7 +176,6 @@ public class UserInfoController {
          UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                  updatedUserDetails, authentication.getCredentials(), updatedUserDetails.getAuthorities());
          SecurityContextHolder.getContext().setAuthentication(authToken);
-
          
          
          return "redirect:/user/top";
