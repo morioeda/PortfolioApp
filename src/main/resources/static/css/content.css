@@ -70,6 +70,7 @@ h1{
 .container{
 	text-align: center;
 	margin-bottom: 100px;
+	margin-top: 100px;
 }
 
 .content {
@@ -108,6 +109,7 @@ form{
 	color: white;
 	margin-top: 50px;
 	transition: 0.3s;
+	border: none;
 }
 
 .edit-btn{
@@ -120,6 +122,7 @@ form{
 	color: white;
 	transition: 0.3s;
 	font-size: 18px;
+	border: none;
 }
 
 .edit-btn:hover{
@@ -129,6 +132,7 @@ form{
 	opacity: 0.8;
 	
 }
+
 footer.footer{
 		position: fixed;
 		bottom: 0;
@@ -155,7 +159,6 @@ footer.footer{
 .section-wrap{
 	display: flex;
 	justify-content: center;
-	margin-top: 80px;
 	align-items: center;
 }
 
@@ -201,3 +204,142 @@ textarea{
     outline: none;
     padding:0px 2px;	
 }
+
+/*SkilleditページのCSS*/
+
+select{
+	width: 100px;
+	height: 50px;
+	padding: 8px 16px 8px 16px;
+	border-radius: 4px;
+	border: 1px solid #DDDDDD;
+	font-family: Roboto;
+	font-size: 24px;
+	font-weight: 700;
+	text-align: left;
+	margin-bottom: 40px;
+}
+
+.skill-wrapper{
+	width: 960px;
+	display: inline-block;
+	
+}
+
+.select-month{
+	text-align: left;
+}
+
+.skill-wrap{
+	width: 960px;
+	display: inline-block;
+	border: 1px solid #00000080;
+	padding: 40px;
+	border-radius: 8px;
+	margin-bottom: 40px;
+	
+}
+.skill-header{
+	display: flex;
+	align-items: center;
+}
+
+.skill-title{
+	width: 240px;
+    text-align: left;
+	font-size: 24px;
+	font-weight: 700;
+	padding-bottom: 20px;
+	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.add-item{
+	background-color:#1B5678;
+	color: white;
+	border-radius: 4px;
+	padding: 16px 40px;
+	margin-left: auto;
+	transition: 0.3s;
+	border: none;
+}
+
+.table{
+	border-radius: 4px;
+	width: 100%;
+	margin-top: 30px;
+	box-shadow: 0px 2px 2px 3px #0000001F;
+}
+th{
+	text-align: left;
+	padding: 16px 16px 16px 40px;
+}
+
+tr{
+	height: 73px;
+}
+
+td{
+	border-top: 1px solid #ccc;
+}
+
+col.width-240{
+	width: 240px;
+}
+
+col.width-200{
+	width: 200px;
+}
+
+.item-title{
+	text-align: left;
+	padding: 16px 16px 16px 40px;
+}
+
+.study-hours{
+	width: 160px;
+	height: 40px;
+	padding: 3px 0px 3px 12px;
+	border-radius: 4px;
+	border: 1px solid #0000003B;
+	text-align: left;
+	
+}
+
+.save-studyhours{
+	color: #1B5678;
+	background: #FFFFFF;
+	font-size: 14px;
+	width: 158px;
+	height:35px;
+	padding: 8px 16px;
+	border-radius: 4px;
+	border: 1px solid #1B5678;
+	transition: 0.3s;
+}
+
+.save-studyhours:hover{
+	background-color: #1B5678;
+	color: #FFFFFF;
+}
+
+.delete{
+	width: 88px;
+	height:35px;
+	padding: 8px 16px;
+	border-radius: 4px;
+	background: #EE6969;
+	color: #FFFFFF;
+	font-size: 14px;
+	border: none;
+	transition: 0.1s;
+}
+
+.delete:hover{
+	border: 1px solid #EE6969;
+	color: #EE6969;
+	background-color: #FFFFFF;
+}
+
+
+
+
