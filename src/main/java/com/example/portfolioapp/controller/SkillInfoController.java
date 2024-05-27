@@ -9,12 +9,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -32,11 +34,15 @@ public class SkillInfoController {
 	@Autowired
 	SkillInfoService skillInfoService;
 	
+	@Autowired
+    private UserDetailsService userDetailsService;
 	
-	
-	  //自己紹介編集画面の表示
+    //項目追加ページの表示
     @GetMapping(value = "/user/skilladd")
-    public String displaySkillAdd(Authentication loginUser,Model model) {
+    public String displaySkillAdd(@RequestParam Long category_id, Authentication loginUser,Model model) {
+    	
+    	//パラメーター（カテゴリーIDを取得）
+    	model.addAttribute("category_id", category_id);
     	
     	//フォームオブジェクトをモデルに追加
     	model.addAttribute("skillAddRequest", new SkillAddRequest());
@@ -45,15 +51,18 @@ public class SkillInfoController {
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
         
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
-        model.addAttribute("skillAddRequest", new SkillAddRequest());//UserAddになっていたので修正
+        model.addAttribute("userAddRequest", new UserAddRequest());//UserAddになっていたので修正
         model.addAttribute("hoge", userDetails.getName());
-        model.addAttribute("id",userDetails.getId());//Idを取得し、Viewに渡す        
+        model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
+        
+        
         return "user/skilladd";
     }
     
+    
+    //項目追加ページ
     @RequestMapping(value = "/user/skilladd", method = RequestMethod.POST)
-    public String add(@Validated @ModelAttribute SkillAddRequest skillRequest, BindingResult result, Model model,HttpServletRequest request) {
-    	  model.addAttribute("skillAddRequest", new SkillAddRequest());
+    public String add(@Validated @ModelAttribute SkillAddRequest skillRequest, BindingResult result, Model model,Authentication loginUser) {
     	  
         if (result.hasErrors()) {
             // 入力チェックエラーの場合
@@ -63,6 +72,11 @@ public class SkillInfoController {
             }
             
             model.addAttribute("validationError", errorList);
+            model.addAttribute("userAddRequest", new UserAddRequest());
+            CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+            model.addAttribute("hoge", userDetails.getName());
+            model.addAttribute("id",userDetails.getId());
+            
             
             System.out.println(model.getAttribute("validationError"));
             
@@ -72,6 +86,15 @@ public class SkillInfoController {
         // 項目名と学習時間情報をDBへ登録
         skillInfoService.add(skillRequest);
         
+        //追記↓
+//        CustomUserDetails updatedUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(authentication.getName());
+        
+		/*  //セキュリティコンテキストを更新
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+		        updatedUserDetails, authentication.getCredentials(), updatedUserDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authToken);
+		//ここまで
+		*/        
         return "redirect:/user/skilledit"; //項目一覧画面へ遷移するように変更
     }
 	

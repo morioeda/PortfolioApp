@@ -12,6 +12,7 @@ public class SkillInfoService {
 	@Autowired
 	private UserInfoMapper userInfoMapper;
 	
+	
 	public void add(SkillAddRequest skillAddRequest) {
 		userInfoMapper.add(skillAddRequest);
 		}

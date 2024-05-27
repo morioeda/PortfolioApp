@@ -8,7 +8,7 @@
 <body>
 	<header>
 		<div class="header-logo">My Portfolio</div>
-		<input type="button" onclick="location.href='./login'" value="ログイン" class="header-login"/>
+		<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
 	</header>
 	
 	<div class="container">
@@ -20,18 +20,20 @@
 			<div class="content">
 				<p class="name">項目名</p>
 				<input type="text" th:field="*{name}" class="form-control">
-				<div th:if="${#fields.hasErrors('name')}" th:text="${error}">
-					<p th:each="error : ${#fields.errors('name')}" th:text="${error}"></p>
-				</div>
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				
 			</div>
+			
 			<div class="content">
 				<p>学習時間</p>
 				<input type="number" th:field="*{study_time}" class="form-control">
-				<div th:if="${#fields.hasErrors('study_time')}" th:text="${error}">
+				<div th:if="${#fields.hasErrors('study_time')}" class="error-message">
 					<p th:each="error : ${#fields.errors('study_time')}" th:text="${error}"></p>
 				</div>
 			</div>
 			
+			<input type="hidden" th:value="${category_id}" name="category_id"><!-- valueを前ページで選択したカテゴリごとに変わるようにする-->
+			<input type="hidden" th:value="${user_id}" name="user_id"><!--DBへの登録の際、ログインユーザのIDが取得出来るよう設定-->
 			<input type="submit" value="追加" class="btn btn-primary">
 		</div>
 	

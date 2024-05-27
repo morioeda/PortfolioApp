@@ -16,8 +16,11 @@ import lombok.Data;
 @Data
 public class SkillAddRequest implements Serializable{
 	
-	//月
+	//ID
+	private Long category_id;
 	
+	//ユーザーID
+	private Long user_id;
 	
 	//項目名
 	@NotEmpty(message = "項目名は必ず入力してください")

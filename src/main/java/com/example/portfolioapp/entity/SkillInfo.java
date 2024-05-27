@@ -2,9 +2,13 @@ package com.example.portfolioapp.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,7 +29,7 @@ public class SkillInfo implements Serializable{
 	private int study_time;
 	
 	//月
-	private Date month;
+	private int month;
 	
 	//カテゴリーID
 	private Long category_id;
@@ -38,6 +42,14 @@ public class SkillInfo implements Serializable{
 	
 	//更新日時
 	private Date updated_at;
+	
+	 @ManyToMany
+	    @JoinTable(
+	        name = "learning_data_category",
+	        joinColumns = @JoinColumn(name = "learning_data_id"),
+	        inverseJoinColumns = @JoinColumn(name = "category_id")
+	    )
+	    private Set<CategoriesInfo> categoriesInfo;
 	
 
 }

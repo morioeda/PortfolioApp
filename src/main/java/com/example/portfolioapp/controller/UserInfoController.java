@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.portfolioapp.authentication.CustomUserDetails;
+import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.service.SkillInfoService;
 import com.example.portfolioapp.service.UserInfoService;
 
 import ch.qos.logback.classic.Logger;
@@ -44,6 +46,9 @@ public class UserInfoController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
+    
+    @Autowired
+	SkillInfoService skillInfoService;
     
     /**
      * ユーザー新規登録画面を表示
@@ -159,6 +164,11 @@ public class UserInfoController {
              }
              
              model.addAttribute("validationError", errorList);
+             
+             CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+             model.addAttribute("id",userDetails.getId());
+
+             
              return "user/textedit";
          }	 
     	 
@@ -181,8 +191,6 @@ public class UserInfoController {
          return "redirect:/user/top";
     }
     
-    
-    
     //スキル編集ページの表示
     @GetMapping(value = "/user/skilledit")
     public String displaySkillEdit(Authentication loginUser,Model model) {
@@ -195,5 +203,8 @@ public class UserInfoController {
         
         return "user/skilledit";
     }
+    
+
+    
     
 }

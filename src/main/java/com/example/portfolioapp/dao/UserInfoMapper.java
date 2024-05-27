@@ -22,7 +22,10 @@ public interface UserInfoMapper {
      //自己紹介文更新
      void update(UserUpdateRequest userUpdateRequest);
      
-     //項目追加
+     
+     //学習時間追加
      void add(SkillAddRequest skillAddRequest);
+     
+ 
 
 }
