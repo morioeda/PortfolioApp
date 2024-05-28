@@ -38,6 +38,10 @@ INSERT INTO  learning_data
   SELECT * FROM learning_data
 </select>
 
+<select id="findName" parameterType="String" resultType="com.example.portfolioapp.entity.SkillInfo">
+  SELECT name FROM learning_data
+  WHERE name = #{name}
+</select>
 
 
 

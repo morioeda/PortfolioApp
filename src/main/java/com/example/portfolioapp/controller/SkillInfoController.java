@@ -73,10 +73,14 @@ public class SkillInfoController {
             }
             
             
+          // ユーザー名の重複をチェック
+         if (skillInfoService.isItemExist(skillRequest.getName())) {
+                result.rejectValue("name", "duplicate", "入力した項目名は既に使用されています");
+            }
+            
             model.addAttribute("validationError", errorList);
             model.addAttribute("userAddRequest", new UserAddRequest());
-            
-         
+                     
             CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
             model.addAttribute("hoge", userDetails.getName());
             model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す

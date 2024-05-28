@@ -32,5 +32,6 @@ public interface UserInfoMapper {
      //学習データ検索
      List <SkillInfo> findAll();
      
-     
+     //項目名検索
+     public SkillInfo findName(String name);
 }
