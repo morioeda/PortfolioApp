@@ -27,6 +27,7 @@ import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.entity.SkillInfo;
 import com.example.portfolioapp.service.SkillInfoService;
 import com.example.portfolioapp.service.UserInfoService;
 
@@ -199,7 +200,14 @@ public class UserInfoController {
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
-        model.addAttribute("selfIntroduction", userDetails.getSelf_introduction());//自己紹介文をモデルに追加
+        
+        
+        //learning_dataの情報を取得して表示させる
+        List<SkillInfo> dataList= skillInfoService.findAll();
+        model.addAttribute("datalist",dataList);
+        model.addAttribute("userSearchRequest", new SkillAddRequest());
+        
+        
         
         return "user/skilledit";
     }

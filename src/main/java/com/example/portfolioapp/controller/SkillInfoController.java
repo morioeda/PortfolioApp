@@ -24,6 +24,7 @@ import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.entity.SkillInfo;
 import com.example.portfolioapp.service.SkillInfoService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,7 +63,7 @@ public class SkillInfoController {
     
     //項目追加ページ
     @RequestMapping(value = "/user/skilladd", method = RequestMethod.POST)
-    public String add(@Validated @ModelAttribute SkillAddRequest skillRequest, BindingResult result, Model model,Authentication loginUser) {
+    public String add(@RequestParam Long category_id,@Validated @ModelAttribute SkillAddRequest skillRequest, BindingResult result, Model model,Authentication loginUser) {
     	  
         if (result.hasErrors()) {
             // 入力チェックエラーの場合
@@ -71,12 +72,17 @@ public class SkillInfoController {
                 errorList.add(error.getDefaultMessage());
             }
             
+            
             model.addAttribute("validationError", errorList);
             model.addAttribute("userAddRequest", new UserAddRequest());
+            
+         
             CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
             model.addAttribute("hoge", userDetails.getName());
-            model.addAttribute("id",userDetails.getId());
+            model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
             
+            //バリデーションチェック後もパラメーターを保持
+            model.addAttribute("category_id", category_id);
             
             System.out.println(model.getAttribute("validationError"));
             

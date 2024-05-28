@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
@@ -32,6 +33,7 @@ public class SkillInfo implements Serializable{
 	private int month;
 	
 	//カテゴリーID
+	@Column(name="category_id")
 	private Long category_id;
 	
 	//ユーザーID

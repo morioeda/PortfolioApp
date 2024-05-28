@@ -20,7 +20,9 @@
 			<div class="content">
 				<p class="name">項目名</p>
 				<input type="text" th:field="*{name}" class="form-control">
-				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">
+				</div>
 				
 			</div>
 			

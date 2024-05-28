@@ -33,4 +33,12 @@ INSERT INTO  learning_data
            (#{name},#{study_time},#{category_id},#{user_id},CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP)
 </insert>
 
+<!-- 学習データの表示 -->
+ <select id="findAll" resultType="com.example.portfolioapp.entity.SkillInfo">
+  SELECT * FROM learning_data
+</select>
+
+
+
+
    </mapper>

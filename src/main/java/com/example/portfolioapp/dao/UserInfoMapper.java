@@ -1,10 +1,13 @@
 package com.example.portfolioapp.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.entity.SkillInfo;
 import com.example.portfolioapp.entity.UserInfo;
 
 @Mapper
@@ -26,6 +29,8 @@ public interface UserInfoMapper {
      //学習時間追加
      void add(SkillAddRequest skillAddRequest);
      
- 
-
+     //学習データ検索
+     List <SkillInfo> findAll();
+     
+     
 }
