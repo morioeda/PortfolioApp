@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.portfolioapp.dao.UserInfoMapper;
 import com.example.portfolioapp.dto.SkillAddRequest;
+import com.example.portfolioapp.dto.StudyTimeUpdateRequest;
+import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.entity.SkillInfo;
 
 @Service
@@ -37,6 +39,11 @@ public class SkillInfoService {
 	public SkillInfo findCategory(Long category_id) {
 		return userInfoMapper.findCategory(category_id);
 	}
+	
+	//学習時間の更新
+	public void update(StudyTimeUpdateRequest studyTimeUpdateRequest) {
+		userInfoMapper.updateTime(studyTimeUpdateRequest);
+		}
 
 
 }

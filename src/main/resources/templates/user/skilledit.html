@@ -48,12 +48,17 @@
 						<th></th>
 						<th></th>
 					</tr>
-					
+		
 					<tr th:each="data : ${datalist}" th:if="${data.category_id} == 5"><!--1行目-->
+						<form th:action="@{/user/skilledit}" method="post">
 						<td th:text="${data.name}" class="item-title"></td>
-						<td ><input type="number" class="study-hours" th:value="${data.study_time}"/></td>
-						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<td>
+            			<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+            			<input type="hidden" name="id" th:value="${data.id}" /> 
+       					</td>
+						<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
 						<td><input type="button"value="削除する" class="delete"></td>
+					</form>
 					</tr>
 					
 				</tbody>
@@ -83,12 +88,17 @@
 						<th></th>
 						<th></th>
 					</tr>
-							
+					
 					<tr th:each="data : ${datalist}" th:if="${data.category_id} == 6"><!--1行目-->
-						<td th:text="${data.name}"class="item-title"></td>
-						<td><input type="number" class="study-hours"th:value="${data.study_time}"/></td>
-						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
+						<form th:action="@{/user/skilledit}" method="post">
+						<td th:text="${data.name}" class="item-title"></td>
+						<td>
+					        <input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+					        <input type="hidden" name="id" th:value="${data.id}" /> 
+					 	</td>
+						<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
 						<td><input type="button"value="削除する" class="delete"></td>
+						</form>
 					</tr>
 					
 				</tbody>
@@ -101,7 +111,6 @@
 				<div class="skill-title">インフラ</div>
 				<input type="button" onclick="location.href='./skilladd?category_id=7'" value="項目を追加する" class="add-item"/>
 			</div>
-						
 			<table class="table">
 				
 				<colgroup>
@@ -119,12 +128,16 @@
 					</tr>
 					
 					<tr th:each="data : ${datalist}" th:if="${data.category_id} == 7"><!--1行目-->
-						<td th:text="${data.name}" class="item-title"></td>
-						<td><input type="number" class="study-hours"th:value="${data.study_time}"/></td>
-						<td><input type="button"value="学習時間を保存する" class="save-studyhours"></td>
-						<td><input type="button"value="削除する" class="delete"></td>
+						<form th:action="@{/user/skilledit}" method="post">
+							<td th:text="${data.name}" class="item-title"></td>
+							<td>
+							<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+							<input type="hidden" name="id" th:value="${data.id}" /> 
+							</td>
+							<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
+							<td><input type="button"value="削除する" class="delete"></td>
+						</form>
 					</tr>
-										
 				</tbody>
 				
 			</table>

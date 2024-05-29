@@ -13,7 +13,7 @@
 	
 	<div class="container">
 	
-		<h1 th:text="${category_name.name} + 'を追加'"></h1> 
+		<h1 th:text="${category_name.name} + 'を追加'"></h1>
 		<form th:action="@{/user/skilladd}" th:object="${skillAddRequest}" th:method="post">	
 	
 		<div class="form-group">

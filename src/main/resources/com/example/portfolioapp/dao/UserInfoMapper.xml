@@ -49,5 +49,11 @@ SELECT name FROM categories
   WHERE id = #{category_id}
 </select>
 
+<!-- 学習時間の更新 -->
+ <update id="updateTime">
+        update learning_data
+        set study_time = #{study_time}
+        where id = #{id}  
+ </update>
 
    </mapper>

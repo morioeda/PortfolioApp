@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.portfolioapp.dto.SkillAddRequest;
+import com.example.portfolioapp.dto.StudyTimeUpdateRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.entity.SkillInfo;
@@ -36,7 +37,10 @@ public interface UserInfoMapper {
      //項目名検索
      public SkillInfo findName(String name);
      
-		//カテゴリー名検索
+	//カテゴリー名検索
 	public SkillInfo findCategory(Long category_id);
+	
+	//学習時間の更新
+	void updateTime(StudyTimeUpdateRequest studyTimeUpdateRequest);
      
 }
