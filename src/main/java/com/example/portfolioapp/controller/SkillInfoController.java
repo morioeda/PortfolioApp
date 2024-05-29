@@ -24,6 +24,7 @@ import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.entity.CategoriesInfo;
 import com.example.portfolioapp.entity.SkillInfo;
 import com.example.portfolioapp.service.SkillInfoService;
 
@@ -57,7 +58,7 @@ public class SkillInfoController {
         model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
         
         //カテゴリー名を表示
-        SkillInfo categoryName = skillInfoService.findCategory(category_id);
+        CategoriesInfo categoryName = skillInfoService.findCategory(category_id);
         model.addAttribute("category_name", categoryName);
                 
         return "user/skilladd";
@@ -91,14 +92,15 @@ public class SkillInfoController {
             model.addAttribute("category_id", category_id);            
             System.out.println(model.getAttribute("validationError"));
             
+            //カテゴリー名の表示
+            CategoriesInfo categoryName = skillInfoService.findCategory(category_id);
+            model.addAttribute("category_name", categoryName);
+            
             return "user/skilladd";
         }
         
         // 項目名と学習時間情報をDBへ登録
         skillInfoService.add(skillRequest);
-        
-        //追記↓
-//        CustomUserDetails updatedUserDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(authentication.getName());
         
 		/*  //セキュリティコンテキストを更新
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
