@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<title th:text="${title}"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link th:href="@{/css/content.css}" rel="stylesheet">
+	</head>
+<body>
+	<header>
+		<div class="header-logo">My Portfolio</div>
+		<input type="button" onclick="location.href='./login'" value="ログアウト" class="header-login"/>
+	</header>
+	
+	<div class="container">
+	
+		<h1 th:text="${category_name.name} + 'を追加'"></h1> 
+		<form th:action="@{/user/skilladd}" th:object="${skillAddRequest}" th:method="post">	
+	
+		<div class="form-group">
+			<div class="content">
+				<p class="name">項目名</p>
+				<input type="text" th:field="*{name}" class="form-control">
+				
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message">
+				</div>
+				
+			</div>
+			
+			<div class="content">
+				<p>学習時間</p>
+				<input type="number" th:field="*{study_time}" class="form-control">
+				<div th:if="${#fields.hasErrors('study_time')}" class="error-message">
+					<p th:each="error : ${#fields.errors('study_time')}" th:text="${error}"></p>
+				</div>
+			</div>
+			
+			<input type="hidden" th:value="${category_id}" name="category_id"><!-- valueを前ページで選択したカテゴリごとに変わるようにする-->
+			<input type="hidden" th:value="${user_id}" name="user_id"><!--DBへの登録の際、ログインユーザのIDが取得出来るよう設定-->
+			<input type="submit" value="追加" class="btn btn-primary">
+		</div>
+	
+		</form>
+	</div>
+	
+	<footer class="footer">
+		<div class="footer-logo">
+			<p th:text="${hoge}" class="footer-logo">ユーザー名</p>
+		</div>
+	</footer>
+
+</body>
+</html>
