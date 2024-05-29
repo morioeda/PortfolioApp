@@ -56,7 +56,10 @@ public class SkillInfoController {
         model.addAttribute("hoge", userDetails.getName());
         model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
         
-        
+        //カテゴリー名を表示
+        SkillInfo categoryName = skillInfoService.findCategory(category_id);
+        model.addAttribute("category_name", categoryName);
+                
         return "user/skilladd";
     }
     
@@ -71,8 +74,7 @@ public class SkillInfoController {
             for (ObjectError error : result.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());
             }
-            
-            
+                        
           // ユーザー名の重複をチェック
          if (skillInfoService.isItemExist(skillRequest.getName())) {
                 result.rejectValue("name", "duplicate", "入力した項目名は既に使用されています");
@@ -86,8 +88,7 @@ public class SkillInfoController {
             model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
             
             //バリデーションチェック後もパラメーターを保持
-            model.addAttribute("category_id", category_id);
-            
+            model.addAttribute("category_id", category_id);            
             System.out.println(model.getAttribute("validationError"));
             
             return "user/skilladd";

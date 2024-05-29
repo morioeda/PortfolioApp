@@ -3,6 +3,7 @@ package com.example.portfolioapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
@@ -34,4 +35,8 @@ public interface UserInfoMapper {
      
      //項目名検索
      public SkillInfo findName(String name);
+     
+		//カテゴリー名検索
+	public SkillInfo findCategory(Long category_id);
+     
 }

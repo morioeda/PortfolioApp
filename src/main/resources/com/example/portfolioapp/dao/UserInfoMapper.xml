@@ -43,6 +43,11 @@ INSERT INTO  learning_data
   WHERE name = #{name}
 </select>
 
+<!--カテゴリー名の検索-->
+<select id="findCategory"  resultType="com.example.portfolioapp.entity.SkillInfo">
+SELECT name FROM categories
+  WHERE id = #{category_id}
+</select>
 
 
    </mapper>

@@ -25,11 +25,17 @@ public class SkillInfoService {
 	public void add(SkillAddRequest skillAddRequest) {
 		userInfoMapper.add(skillAddRequest);
 		}
-		
+	
+	//項目名がDB内に既に存在しているかを確認する
 	public boolean isItemExist(String name) {
 		
 		SkillInfo existingItem = userInfoMapper.findName(name);
 		return existingItem != null;
+	}
+	
+	//カテゴリー名の検索
+	public SkillInfo findCategory(Long category_id) {
+		return userInfoMapper.findCategory(category_id);
 	}
 
 
