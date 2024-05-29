@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.portfolioapp.authentication.CustomUserDetails;
 import com.example.portfolioapp.dto.SkillAddRequest;
+import com.example.portfolioapp.dto.StudyTimeUpdateRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
 import com.example.portfolioapp.entity.SkillInfo;
@@ -200,19 +201,24 @@ public class UserInfoController {
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
-        
-        
+                
         //learning_dataの情報を取得して表示させる
         List<SkillInfo> dataList= skillInfoService.findAll();
         model.addAttribute("datalist",dataList);
         model.addAttribute("userSearchRequest", new SkillAddRequest());
         
-        
-        
         return "user/skilledit";
     }
     
-
-    
+	 @RequestMapping(value="/user/skilledit", method=RequestMethod.POST)
+	public String updateTime(@ModelAttribute StudyTimeUpdateRequest studyTimeUpdateRequest,BindingResult result,Model model,Authentication authentication) {
+		
+		 
+		model.addAttribute("id",studyTimeUpdateRequest);//learning_dataテーブルのIDを取得する※WHERE句でidを指定してるのでこれが無いとSQL文が完成しない
+		skillInfoService.update(studyTimeUpdateRequest);
+		
+		
+		return "redirect:/user/skilledit";
+	}
     
 }
