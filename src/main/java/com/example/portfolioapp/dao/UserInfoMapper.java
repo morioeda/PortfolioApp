@@ -43,5 +43,8 @@ public interface UserInfoMapper {
 	
 	//学習時間の更新
 	void updateTime(StudyTimeUpdateRequest studyTimeUpdateRequest);
+	
+	//学習データの削除※削除対象のIDを引数として受け取る
+	void deleteData(Long id);
      
 }

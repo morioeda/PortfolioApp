@@ -45,6 +45,10 @@ public class SkillInfoService {
 	public void update(StudyTimeUpdateRequest studyTimeUpdateRequest) {
 		userInfoMapper.updateTime(studyTimeUpdateRequest);
 		}
-
+	
+	//学習データの削除
+	public void deleteData(Long id) {
+		userInfoMapper.deleteData(id);
+	}
 
 }

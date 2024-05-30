@@ -51,14 +51,21 @@
 		
 					<tr th:each="data : ${datalist}" th:if="${data.category_id} == 5"><!--1行目-->
 						<form th:action="@{/user/skilledit}" method="post">
-						<td th:text="${data.name}" class="item-title"></td>
-						<td>
-            			<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
-            			<input type="hidden" name="id" th:value="${data.id}" /> 
-       					</td>
-						<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
-						<td><input type="button"value="削除する" class="delete"></td>
-					</form>
+							<td th:text="${data.name}" class="item-title"></td>
+							<td>
+            					<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+								<input type="hidden" name="action" value="update" />
+            					<input type="hidden" name="id" th:value="${data.id}" /> 
+       						</td>
+							<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
+						</form>
+						<form th:action="@{/user/skilledit}" method="post">	
+							<td>								
+								<input type="hidden" name="action" value="delete" />
+								<input type="hidden" name="id" th:value="${data.id}" /> 
+								<input type="submit"value="削除する" class="delete">
+							</td>
+						</form>
 					</tr>
 					
 				</tbody>
@@ -93,11 +100,18 @@
 						<form th:action="@{/user/skilledit}" method="post">
 						<td th:text="${data.name}" class="item-title"></td>
 						<td>
-					        <input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
-					        <input type="hidden" name="id" th:value="${data.id}" /> 
-					 	</td>
+							<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+							<input type="hidden" name="action" value="update" />
+							<input type="hidden" name="id" th:value="${data.id}" /> 
+						</td>
 						<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
-						<td><input type="button"value="削除する" class="delete"></td>
+						</form>
+						<form th:action="@{/user/skilledit}" method="post">	
+							<td>								
+								<input type="hidden" name="action" value="delete" />
+								<input type="hidden" name="id" th:value="${data.id}" /> 
+								<input type="submit"value="削除する" class="delete">
+							</td>
 						</form>
 					</tr>
 					
@@ -131,11 +145,18 @@
 						<form th:action="@{/user/skilledit}" method="post">
 							<td th:text="${data.name}" class="item-title"></td>
 							<td>
-							<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
-							<input type="hidden" name="id" th:value="${data.id}" /> 
+								<input type="number" name="study_time" th:value="${data.study_time}" class="study-hours" />
+								<input type="hidden" name="action" value="update" />
+								<input type="hidden" name="id" th:value="${data.id}" /> 
 							</td>
 							<td><input type="submit"value="学習時間を保存する" class="save-studyhours"></td>
-							<td><input type="button"value="削除する" class="delete"></td>
+						</form>
+						<form th:action="@{/user/skilledit}" method="post">	
+							<td>								
+								<input type="hidden" name="action" value="delete" />
+								<input type="hidden" name="id" th:value="${data.id}" /> 
+								<input type="submit"value="削除する" class="delete">
+							</td>
 						</form>
 					</tr>
 				</tbody>

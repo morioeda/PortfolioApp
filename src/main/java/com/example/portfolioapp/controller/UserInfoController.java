@@ -20,6 +20,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -210,14 +211,16 @@ public class UserInfoController {
         return "user/skilledit";
     }
     
+    //学習時間の更新と学習データの削除
 	 @RequestMapping(value="/user/skilledit", method=RequestMethod.POST)
-	public String updateTime(@ModelAttribute StudyTimeUpdateRequest studyTimeUpdateRequest,BindingResult result,Model model,Authentication authentication) {
+	public String updateTime(@ModelAttribute StudyTimeUpdateRequest studyTimeUpdateRequest,@RequestParam String action,Model model,Authentication authentication) {
 		
+		 if (action.equals("update")) {
+		       skillInfoService.update(studyTimeUpdateRequest);
+		   } else if (action.equals("delete")) {
+		       skillInfoService.deleteData(studyTimeUpdateRequest.getId());
+		   }
 		 
-		model.addAttribute("id",studyTimeUpdateRequest);//learning_dataテーブルのIDを取得する※WHERE句でidを指定してるのでこれが無いとSQL文が完成しない
-		skillInfoService.update(studyTimeUpdateRequest);
-		
-		
 		return "redirect:/user/skilledit";
 	}
     
