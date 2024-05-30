@@ -55,5 +55,12 @@ SELECT id,name FROM categories
         set study_time = #{study_time}
         where id = #{id}  
  </update>
+ 
+ <!-- 学習データの削除 -->
+  <delete id="deleteData" >
+  delete from learning_data
+  where id = #{id}
+  </delete>
+ 
 
    </mapper>
