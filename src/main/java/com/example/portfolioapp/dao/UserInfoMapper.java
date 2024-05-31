@@ -47,4 +47,6 @@ public interface UserInfoMapper {
 	//学習データの削除※削除対象のIDを引数として受け取る
 	void deleteData(Long id);
      
+	//学習時間合計の表示
+	List <SkillInfo> SumStudyTime();
 }

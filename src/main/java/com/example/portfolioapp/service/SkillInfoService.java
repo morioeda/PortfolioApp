@@ -50,5 +50,9 @@ public class SkillInfoService {
 	public void deleteData(Long id) {
 		userInfoMapper.deleteData(id);
 	}
-
+	
+	//学習時間合計の表示
+	public List<SkillInfo>SumStudyTime(){
+		return userInfoMapper.SumStudyTime();
+	}	
 }
