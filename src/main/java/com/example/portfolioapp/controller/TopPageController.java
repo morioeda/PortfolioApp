@@ -23,6 +23,7 @@ public class TopPageController {
 	SkillInfoService skillInfoService;
 	
 	
+	
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
@@ -45,30 +46,26 @@ public class TopPageController {
     	//カテゴリ毎の合計(data)を設定
         //DBのレコードをListクラスで取得
         List<SkillInfo> expenseByStudytime = skillInfoService.SumStudyTime();
+        
+        int category_id = expenseByStudytime.getCategory_Id();
+        
+        
+        if (category_id == 5) {
+        	
+        }
+        
+        
+        
+        model.addAttribute("totalTime",expenseByStudytime);
         System.out.println(expenseByStudytime);
         
-        int[] totalTime ={expenseByStudytime.study_time};
-        int sum = 0;
-        for (int i=0 ; i<totalTime.length; i++){
-        	
-        	sum += totalTime[i];
-        	}
+
         
     	
     	//配列に変換
         
 
         // Modelに格納
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         return "user/top";
     }
     

@@ -47,9 +47,9 @@
 		<canvas id="chart"></canvas>
 		   <script type="text/javascript">
 		  
-		   var ctx = document.getElementById("chart");
+		   let ctx = document.getElementById("chart");
 		   //let lineChart = new Chart(lineCtx, lineConfig);
-		   var samplechart = new Chart(ctx, {
+		   let samplechart = new Chart(ctx, {
 			
 			type: 'bar',
 			data: {
@@ -57,7 +57,7 @@
 			            datasets: [{
 							
 							     label: 'バックエンド',
-							     data: [25, 35, 40],//←ここ変える
+							     data:[],
 							     backgroundColor: '#f88',
 								 
 							   }, {
