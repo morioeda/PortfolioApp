@@ -1,6 +1,7 @@
 package com.example.portfolioapp.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
 
@@ -45,13 +46,15 @@ public class SkillInfo implements Serializable{
 	//更新日時
 	private Date updated_at;
 	
-	 @ManyToMany
-	    @JoinTable(
-	        name = "learning_data_category",
-	        joinColumns = @JoinColumn(name = "learning_data_id"),
-	        inverseJoinColumns = @JoinColumn(name = "category_id")
-	    )
-	    private Set<CategoriesInfo> categoriesInfo;
+	
+	
+			@ManyToMany
+		    @JoinTable(
+		        name = "learning_data_category",
+		        joinColumns = @JoinColumn(name = "learning_data_id"),
+		        inverseJoinColumns = @JoinColumn(name = "category_id")
+		    )
+		    private Set<CategoriesInfo> categoriesInfo;
 	
 
 }

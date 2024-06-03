@@ -1,6 +1,8 @@
 package com.example.portfolioapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,7 @@ public class TopPageController {
 	@Autowired
 	SkillInfoService skillInfoService;
 	
+	
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
@@ -38,26 +41,36 @@ public class TopPageController {
         
         List<SkillInfo> dataList= skillInfoService.findAll();
         model.addAttribute("datalist",dataList);      
-        return "user/top";
-    }
-    
-    
-    //テストコード↓
-    @RequestMapping(value = "/user/top")
-    public String displayChart(Model model) {
-    	
-    	
-    	
+                
     	//カテゴリ毎の合計(data)を設定
         //DBのレコードをListクラスで取得
+        List<SkillInfo> expenseByStudytime = skillInfoService.SumStudyTime();
+        System.out.println(expenseByStudytime);
+        
+        int[] totalTime ={expenseByStudytime.study_time};
+        int sum = 0;
+        for (int i=0 ; i<totalTime.length; i++){
+        	
+        	sum += totalTime[i];
+        	}
+        
     	
     	//配列に変換
         
 
         // Modelに格納
-     
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         return "user/top";
     }
+    
 
 }
