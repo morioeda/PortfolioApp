@@ -38,17 +38,38 @@
 			<h2>学習チャート</h2>
 			
 			<input type="button" onclick="location.href='./skilledit'" value="編集する" class="edit-btn">
-				
+			
 		</div>		<!--chart-wrap div-->
 		
 		
 		<!--ここからテストコード-->
 		<div class="chart">
-		<canvas id="chart"></canvas>
-		   <script type="text/javascript">
-		  
+		<canvas id="chart"></canvas>		  
+		
+		<script th:inline="javascript">
+			
+			let expenseByStudytime = /*[[${expenseByStudytime}]]*/ [];
+			
+			// データをカテゴリーごとに分ける
+			    let groupedByCategory = {};
+			    expenseByStudytime.forEach(expense => {
+			        let category = expense.category_id;
+			        if (!groupedByCategory[category]) {
+			            groupedByCategory[category] = [];
+			        }
+			        groupedByCategory[category].push(expense);
+			    });
+				
+				// 3つの配列に分割
+				        let arrays = Object.keys(groupedByCategory).map(key => groupedByCategory[key]);
+				        console.log(arrays);
+			
+			console.log(/*[[${expenseByStudytime}]]*/);
+			console.log(arrays[0][0].study_time);
+			
 		   let ctx = document.getElementById("chart");
-		   //let lineChart = new Chart(lineCtx, lineConfig);
+		   
+		   //表示するチャート
 		   let samplechart = new Chart(ctx, {
 			
 			type: 'bar',
@@ -57,16 +78,16 @@
 			            datasets: [{
 							
 							     label: 'バックエンド',
-							     data:[],
+							     data:[arrays[0][0].study_time,arrays[0][1].study_time,arrays[0][2].study_time],
 							     backgroundColor: '#f88',
 								 
 							   }, {
 							     label: 'フロントエンド',
-							     data: [20, 10, 30], //←ここ変える
+							     data: [arrays[1][0].study_time,arrays[1][1].study_time,arrays[1][2].study_time], 
 							     backgroundColor: '#484',
 							   }, {
 							     label: 'インフラ',
-							     data: [30, 20, 15], //←ここ変える
+							     data: [arrays[2][0].study_time,arrays[2][1].study_time,arrays[2][2].study_time], 
 							     backgroundColor: '#48f',
 							   }],
 			          },

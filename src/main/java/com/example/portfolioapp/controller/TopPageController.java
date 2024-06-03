@@ -47,19 +47,12 @@ public class TopPageController {
         //DBのレコードをListクラスで取得
         List<SkillInfo> expenseByStudytime = skillInfoService.SumStudyTime();
         
-        int category_id = expenseByStudytime.getCategory_Id();
-        
-        
-        if (category_id == 5) {
-        	
-        }
         
         
         
-        model.addAttribute("totalTime",expenseByStudytime);
+        model.addAttribute("expenseByStudytime",expenseByStudytime);
         System.out.println(expenseByStudytime);
         
-
         
     	
     	//配列に変換
