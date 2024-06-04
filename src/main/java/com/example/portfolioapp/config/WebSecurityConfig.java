@@ -50,9 +50,8 @@ public class WebSecurityConfig {
 	       	         .logoutSuccessUrl("/user/login") //ログアウト成功後のURL
 	       	         .deleteCookies("JSESSIONID")
 	       	         .invalidateHttpSession(true).permitAll()
-	       	         );
-	  
-	        
+	       	         );	  
+	       
 	        return http.build();
 	    }
 	  
@@ -70,9 +69,9 @@ public class WebSecurityConfig {
 	}
 	
 	//新規登録後のログイン認証用※上手く動いてないっぽい
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
-		return authenticationConfiguration.getAuthenticationManager();
-	}
+		@Bean
+		public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+			return authenticationConfiguration.getAuthenticationManager();
+		}
 
 }

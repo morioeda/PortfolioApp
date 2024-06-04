@@ -90,26 +90,39 @@ public class UserInfoController {
         // ユーザー情報をDBへ登録
         userInfoService.save(userRequest);
         
-        //新規登録後自動的にログインさせる
-        try {
-            // 保存されたユーザー情報を使ってUserDetailsを取得
-            UserDetails userDetails = userDetailsService.loadUserByUsername(userRequest.getEmail());
-            
-            // 認証トークンを作成
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails, userRequest.getPassword(), userDetails.getAuthorities());
-
-            // セキュリティコンテキストに認証情報を設定
-            Authentication authentication = authenticationManager.authenticate(authToken);
-//            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            // HttpServletRequestを使ってユーザーをログインさせる
-        } catch (Exception e) {
-//            e.printStackTrace();
-            return "user/top"; // トップページにリダイレクト
-        }
+		/*    //新規登録後自動的にログインさせる
+		try {
+		    // 保存されたユーザー情報を使ってUserDetailsを取得
+		    UserDetails userDetails = userDetailsService.loadUserByUsername(userRequest.getEmail());
+		    
+		    // 認証トークンを作成
+		    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+		            userDetails, userRequest.getPassword(), userDetails.getAuthorities());
+		
+		    // セキュリティコンテキストに認証情報を設定
+		    Authentication authentication = authenticationManager.authenticate(authToken);
+		//            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+		    SecurityContextHolder.getContext().setAuthentication(authentication);
+		
+		    // HttpServletRequestを使ってユーザーをログインさせる
+		} catch (Exception e) {
+		//            e.printStackTrace();
+		    return "user/top"; // トップページにリダイレクト
+		}*/
         
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        
+        if (authentication instanceof AnonymousAuthenticationToken == false) {
+            SecurityContextHolder.clearContext();
+        }
+
+        try {
+            request.login(userRequest.getName(), userRequest.getPassword());
+            
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
         
         return "redirect:/user/top"; //トップ画面へ遷移するように変更
     }

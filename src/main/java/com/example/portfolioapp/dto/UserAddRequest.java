@@ -19,7 +19,7 @@ public class UserAddRequest implements Serializable {
     @NotEmpty(message = "名前は必ず入力してください")
     @Size(max = 100, message = "名前は255文字以内で入力してください")
     private String name;
-
+    
      //メールアドレス
     @Email(message = "メールアドレスが正しい形式ではありません")
     private String email;
