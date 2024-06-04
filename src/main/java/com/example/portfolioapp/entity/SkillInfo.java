@@ -45,13 +45,15 @@ public class SkillInfo implements Serializable{
 	//更新日時
 	private Date updated_at;
 	
-	 @ManyToMany
-	    @JoinTable(
-	        name = "learning_data_category",
-	        joinColumns = @JoinColumn(name = "learning_data_id"),
-	        inverseJoinColumns = @JoinColumn(name = "category_id")
-	    )
-	    private Set<CategoriesInfo> categoriesInfo;
+	
+	
+			@ManyToMany
+		    @JoinTable(
+		        name = "learning_data_category",
+		        joinColumns = @JoinColumn(name = "learning_data_id"),
+		        inverseJoinColumns = @JoinColumn(name = "category_id")
+		    )
+		    private Set<CategoriesInfo> categoriesInfo;
 	
 
 }

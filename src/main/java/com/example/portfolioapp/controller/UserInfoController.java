@@ -29,6 +29,7 @@ import com.example.portfolioapp.dto.SkillAddRequest;
 import com.example.portfolioapp.dto.StudyTimeUpdateRequest;
 import com.example.portfolioapp.dto.UserAddRequest;
 import com.example.portfolioapp.dto.UserUpdateRequest;
+import com.example.portfolioapp.entity.CategoriesInfo;
 import com.example.portfolioapp.entity.SkillInfo;
 import com.example.portfolioapp.service.SkillInfoService;
 import com.example.portfolioapp.service.UserInfoService;
@@ -64,25 +65,6 @@ public class UserInfoController {
         return "user/signin";
     }
     
-    
-    //トップ画面の表示
-    @GetMapping(value = "/user/top")
-    public String displayTop(Authentication loginUser,Model model) {
-    
-        
-    	model.addAttribute("userAddRequest", new UserAddRequest());
-        //emailをモデルに追加。${email}でメアドを表示出来る。
-        model.addAttribute("email", loginUser.getName());
-        
-        // CustomUserDetailsオブジェクトを取得
-        CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
-        //ユーザー名をモデルに追加
-        model.addAttribute("userAddRequest", new UserAddRequest());
-        model.addAttribute("hoge", userDetails.getName());
-        model.addAttribute("selfIntroduction", userDetails.getSelf_introduction());//自己紹介文をモデルに追加
-        
-        return "user/top";
-    }
     
     /**
      * ユーザー新規登録
@@ -206,7 +188,7 @@ public class UserInfoController {
         //learning_dataの情報を取得して表示させる
         List<SkillInfo> dataList= skillInfoService.findAll();
         model.addAttribute("datalist",dataList);
-        model.addAttribute("userSearchRequest", new SkillAddRequest());
+//        model.addAttribute("userSearchRequest", new SkillAddRequest());※要らないぽい
         
         return "user/skilledit";
     }

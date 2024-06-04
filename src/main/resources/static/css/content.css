@@ -156,6 +156,7 @@ footer.footer{
 	color: red;
 }
 
+/*トップページのCSS*/
 .section-wrap{
 	display: flex;
 	justify-content: center;
@@ -205,6 +206,17 @@ textarea{
     padding:0px 2px;	
 }
 
+.chart-wrap{
+	display: inline-block;
+	width: 400px;
+}
+
+.chart-wrap h2{
+	border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    padding-bottom: 20px;
+    font-size: 36px;
+	font-weight: 700;
+}
 /*SkilleditページのCSS*/
 
 select{
@@ -350,6 +362,10 @@ col.width-200{
 	background-color: #FFFFFF;
 }
 
-
+.chart{
+	width: 980px;
+	display: inline-block;
+	margin-top: 70px;
+}
 
 
