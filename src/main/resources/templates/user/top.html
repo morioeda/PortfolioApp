@@ -33,7 +33,9 @@
 			
 		</section>
 		
+	
 		<div class="chart-wrap">
+			
 			
 			<h2>学習チャート</h2>
 			
@@ -43,6 +45,8 @@
 		
 		
 		<!--ここからテストコード-->
+		
+	<div class="chart-wrapper">
 		<div class="chart">
 		<canvas id="chart"></canvas>		  
 		
@@ -79,24 +83,25 @@
 							
 							     label: 'バックエンド',
 							     data:[arrays[0][0].study_time,arrays[0][1].study_time,arrays[0][2].study_time],
-							     backgroundColor: '#f88',
+							     backgroundColor:'rgba(255, 182, 193, 0.6)',
 								 
 							   }, {
 							     label: 'フロントエンド',
 							     data: [arrays[1][0].study_time,arrays[1][1].study_time,arrays[1][2].study_time], 
-							     backgroundColor: '#484',
+							     backgroundColor: 'rgba(244, 164, 96,0.6)',
 							   }, {
 							     label: 'インフラ',
 							     data: [arrays[2][0].study_time,arrays[2][1].study_time,arrays[2][2].study_time], 
-							     backgroundColor: '#48f',
+							     backgroundColor: 'rgba(255, 228, 181,0.6)',
 							   }],
+							   
 			          },
 		   });
 		   
 		   </script>
 		<!--ここまでテストコード-->
 		</div><!--chart div-->
-		
+		</div><!--chart-wrap div-->
 	</div><!--container div-->
 	
 	<footer class="footer">

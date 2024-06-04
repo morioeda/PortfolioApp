@@ -362,6 +362,10 @@ col.width-200{
 	background-color: #FFFFFF;
 }
 
-
+.chart{
+	width: 700px;
+	display: inline-block;
+	margin-top: 70px;
+}
 
 
