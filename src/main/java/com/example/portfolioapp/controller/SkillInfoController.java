@@ -78,7 +78,7 @@ public class SkillInfoController {
                         
           // ユーザー名の重複をチェック
          if (skillInfoService.isItemExist(skillRequest.getName())) {
-                result.rejectValue("name", "duplicate", "入力した項目名は既に使用されています");
+                result.rejectValue("name", null,"入力した項目名は既に使用されています");
             }
             
             model.addAttribute("validationError", errorList);
