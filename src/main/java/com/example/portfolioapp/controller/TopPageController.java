@@ -29,13 +29,11 @@ public class TopPageController {
     //トップ画面の表示
     @GetMapping(value = "/user/top")
     public String displayTop(Authentication loginUser,Model model) {
+    	
+    	 SecurityContext context = SecurityContextHolder.getContext();
+         Authentication authentication = context.getAuthentication();
     
-    	   
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        
-        System.out.println(authentication.getName());
-        
+    
     	model.addAttribute("userAddRequest", new UserAddRequest());
         //emailをモデルに追加。${email}でメアドを表示出来る。
         model.addAttribute("email", loginUser.getName());
@@ -60,9 +58,6 @@ public class TopPageController {
         model.addAttribute("expenseByStudytime",expenseByStudytime);
         System.out.println(expenseByStudytime);
         
-        
-    	
-    	//配列に変換
         
 
         // Modelに格納

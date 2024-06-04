@@ -109,7 +109,7 @@ public class UserInfoController {
 		//            e.printStackTrace();
 		    return "user/top"; // トップページにリダイレクト
 		}*/
-        
+       
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
         
