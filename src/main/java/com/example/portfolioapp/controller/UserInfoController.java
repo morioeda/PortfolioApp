@@ -6,13 +6,16 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,6 +40,7 @@ import com.example.portfolioapp.service.UserInfoService;
 import ch.qos.logback.classic.Logger;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -50,6 +54,7 @@ public class UserInfoController {
     
     @Autowired
     private AuthenticationManager authenticationManager;
+    
     
     @Autowired
 	SkillInfoService skillInfoService;
@@ -73,7 +78,7 @@ public class UserInfoController {
      * @return ユーザー情報一覧画面
      */
     @RequestMapping(value = "/user/signin", method = RequestMethod.POST)
-    public String create(@Validated @ModelAttribute UserAddRequest userRequest, BindingResult result, Model model,HttpServletRequest request) {
+    public String create(@Validated @ModelAttribute UserAddRequest userRequest, BindingResult result, Model model,HttpServletRequest request,String email,String password) {
         if (result.hasErrors()) {
             // 入力チェックエラーの場合
             List<String> errorList = new ArrayList<String>();
@@ -83,7 +88,7 @@ public class UserInfoController {
             
             model.addAttribute("validationError", errorList);
             System.out.println(model.getAttribute("validationError"));
-            
+                        
             return "user/signin";
         }
         
@@ -95,25 +100,26 @@ public class UserInfoController {
             // 保存されたユーザー情報を使ってUserDetailsを取得
             UserDetails userDetails = userDetailsService.loadUserByUsername(userRequest.getEmail());
             
-            // 認証トークンを作成
+            // 認証トークンを作成（ユーザー名、パスワード、およびユーザーの権限情報を保持）
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                     userDetails, userRequest.getPassword(), userDetails.getAuthorities());
 
             // セキュリティコンテキストに認証情報を設定
-            Authentication authentication = authenticationManager.authenticate(authToken);
-//            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            // HttpServletRequestを使ってユーザーをログインさせる
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+            
+            // 認証情報をセッションに保存
+            HttpSession session = request.getSession(true);
+            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
+            
         } catch (Exception e) {
 //            e.printStackTrace();
-            return "user/top"; // トップページにリダイレクト
+            return "user/signin"; 
         }
-        
         
         return "redirect:/user/top"; //トップ画面へ遷移するように変更
     }
-    
+
+
 	//ログイン画面の表示
     @RequestMapping("/user/login")
     public String displayLogin(Model model) {
