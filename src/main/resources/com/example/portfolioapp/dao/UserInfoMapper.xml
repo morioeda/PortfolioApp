@@ -35,7 +35,7 @@ INSERT INTO  learning_data
 
 <!-- 学習データの表示 -->
  <select id="findAll" resultType="com.example.portfolioapp.entity.SkillInfo">
-  SELECT * FROM learning_data
+  SELECT * FROM learning_data WHERE user_id = #{user_id}
 </select>
 
 <select id="findName" parameterType="String" resultType="com.example.portfolioapp.entity.SkillInfo">
@@ -64,7 +64,7 @@ SELECT id,name FROM categories
   
   <!-- 学習時間合計の表示 -->
  <select id="SumStudyTime"  resultType="com.example.portfolioapp.entity.SkillInfo">
-select  month,category_id,sum(study_time) as study_time from learning_data where month in (7,8,9) group by category_id ,month order by category_id;
+select  month,category_id,sum(study_time) as study_time from learning_data where month in (7,8,9)  group by category_id ,month order by category_id;
 </select>
 
    </mapper>
