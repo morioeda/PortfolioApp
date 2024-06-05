@@ -73,6 +73,11 @@
 			
 		   let ctx = document.getElementById("chart");
 		   
+		   // 要素が足りない場合にデフォルト値を設定する関数
+		    function getStudyTime(arr, index) {
+		        return (arr[index] && arr[index].study_time) ? arr[index].study_time : 0;
+		    }
+		   
 		   //表示するチャート
 		   let samplechart = new Chart(ctx, {
 			
@@ -82,19 +87,31 @@
 			            datasets: [{
 							
 							     label: 'バックエンド',
-							     data:[arrays[0][0].study_time,arrays[0][1].study_time,arrays[0][2].study_time],
+							     data:[
+										getStudyTime(arrays[0], 0),
+										getStudyTime(arrays[0], 1),
+										getStudyTime(arrays[0], 2)								 
+									 ],
 							     backgroundColor:'rgba(255, 182, 193, 0.6)',
 								 
 							   }, {
-							     label: 'フロントエンド',
-							     data: [arrays[1][0].study_time,arrays[1][1].study_time,arrays[1][2].study_time], 
-							     backgroundColor: 'rgba(244, 164, 96,0.6)',
+								label: 'フロントエンド',
+								data: [
+										getStudyTime(arrays[1], 0),
+										getStudyTime(arrays[1], 1),
+										getStudyTime(arrays[1], 2)
+									], 
+								backgroundColor: 'rgba(244, 164, 96,0.6)',
+								
 							   }, {
-							     label: 'インフラ',
-							     data: [arrays[2][0].study_time,arrays[2][1].study_time,arrays[2][2].study_time], 
+								label: 'インフラ',
+								data: [
+										getStudyTime(arrays[2], 0),
+										getStudyTime(arrays[2], 1),
+										getStudyTime(arrays[2], 2)
+									], 
 							     backgroundColor: 'rgba(255, 228, 181,0.6)',
-							   }],
-							   
+							   }],							   
 			          },
 		   });
 		   
