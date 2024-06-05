@@ -20,8 +20,8 @@ public class SkillInfoService {
 	private UserInfoMapper userInfoMapper;
 	
 	//学習データの表示
-	public List<SkillInfo>findAll(){
-		return userInfoMapper.findAll();
+	public List<SkillInfo>findAll(Long userId){
+		return userInfoMapper.findAll(userId);
 	}	
 	
 	//項目追加

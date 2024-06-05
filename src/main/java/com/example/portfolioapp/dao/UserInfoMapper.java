@@ -33,7 +33,7 @@ public interface UserInfoMapper {
      void add(SkillAddRequest skillAddRequest);
      
      //学習データ検索
-     List <SkillInfo> findAll();
+     List <SkillInfo> findAll(Long userId);
      
      //項目名検索（重複チェック用）
      public SkillInfo findName(String name);

@@ -23,7 +23,7 @@
 				
 				<div class="content">
 					<p>自己紹介文</p>
-					<textarea th:field="*{self_introduction}" class="textarea"></textarea>
+					<textarea name="self_introduction" th:text="${self_introduction}" class="textarea"></textarea>
 					<div th:if="${#fields.hasErrors('self_introduction')}" class="error-message">
 						<p th:each="error : ${#fields.errors('self_introduction')}" th:text="${error}"></p>
 					</div>
