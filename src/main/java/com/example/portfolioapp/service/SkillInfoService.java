@@ -30,12 +30,12 @@ public class SkillInfoService {
 		}
 	
 	//項目名がDB内に既に存在しているかを確認する
-	public boolean isItemExist(String name) {
+	public boolean isItemExist(String name,Long userId) {
 		
-		SkillInfo existingItem = userInfoMapper.findName(name);
+		SkillInfo existingItem = userInfoMapper.findName(name,userId);
 		return existingItem != null;
 	}
-	
+
 	//カテゴリー名の検索
 	public CategoriesInfo findCategory(Long category_id) {
 		return userInfoMapper.findCategory(category_id);

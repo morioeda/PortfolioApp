@@ -242,7 +242,7 @@ select{
 }
 
 .skill-wrap{
-	width: 960px;
+/*	width: 960px;*/
 	display: inline-block;
 	border: 1px solid #00000080;
 	padding: 40px;

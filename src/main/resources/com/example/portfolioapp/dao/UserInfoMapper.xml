@@ -38,9 +38,10 @@ INSERT INTO  learning_data
   SELECT * FROM learning_data WHERE user_id = #{userId}
 </select>
 
-<select id="findName" parameterType="String" resultType="com.example.portfolioapp.entity.SkillInfo">
+<!--重複チェック用-->
+<select id="findName"  resultType="com.example.portfolioapp.entity.SkillInfo">
   SELECT name FROM learning_data
-  WHERE name = #{name} AND user_id = #{user_id}
+  WHERE name = #{name} AND user_id = #{userId}
 </select>
 
 <!--カテゴリー名の検索-->

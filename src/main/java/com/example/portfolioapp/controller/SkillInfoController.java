@@ -69,22 +69,26 @@ public class SkillInfoController {
     @RequestMapping(value = "/user/skilladd", method = RequestMethod.POST)
     public String add(@RequestParam Long category_id,@Validated @ModelAttribute SkillAddRequest skillRequest, BindingResult result, Model model,Authentication loginUser) {
     	  
+    	CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+    	
         if (result.hasErrors()) {
             // 入力チェックエラーの場合
             List<String> errorList = new ArrayList<String>();
             for (ObjectError error : result.getAllErrors()) {
                 errorList.add(error.getDefaultMessage());
             }
-                        
+           
+            Long userId = userDetails.getId();
+            
+            
           // ユーザー名の重複をチェック
-         if (skillInfoService.isItemExist(skillRequest.getName())) {
+         if (skillInfoService.isItemExist(skillRequest.getName(),userId)) {
                 result.rejectValue("name", null,"入力した項目名は既に使用されています");
             }
             
             model.addAttribute("validationError", errorList);
             model.addAttribute("userAddRequest", new UserAddRequest());
-                     
-            CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+
             model.addAttribute("hoge", userDetails.getName());
             model.addAttribute("user_id",userDetails.getId());//Idを取得し、Viewに渡す
             
