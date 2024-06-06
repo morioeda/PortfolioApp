@@ -64,7 +64,7 @@ SELECT id,name FROM categories
   
   <!-- 学習時間合計の表示 -->
  <select id="SumStudyTime"  resultType="com.example.portfolioapp.entity.SkillInfo">
-select  month,category_id,sum(study_time) as study_time from learning_data where month in (7,8,9)  group by category_id ,month order by category_id;
+select  month,category_id,user_id,sum(study_time) as study_time from learning_data where month in (7,8,9) AND user_id = #{userId} group by category_id ,month order by category_id;
 </select>
 
    </mapper>

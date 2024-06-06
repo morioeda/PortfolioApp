@@ -57,7 +57,7 @@ public class TopPageController {
         System.out.println("data："+ dataList);
                 
         //DBのレコードをListクラスで取得
-        List<SkillInfo> expenseByStudytime = skillInfoService.SumStudyTime();
+        List<SkillInfo> expenseByStudytime = skillInfoService.SumStudyTime(userId);
         
         model.addAttribute("expenseByStudytime",expenseByStudytime);
         System.out.println(expenseByStudytime);

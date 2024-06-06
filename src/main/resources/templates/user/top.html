@@ -75,9 +75,12 @@
 		   
 		   // 要素が足りない場合にデフォルト値を設定する関数
 		    function getStudyTime(arr, index) {
+				
+				// 大元の配列が存在するかをチェック
 				if (!arr) {
 				         return 0;
 				     }
+					 
 		        return (arr[index] && arr[index].study_time) ? arr[index].study_time : 0;
 		    }
 			

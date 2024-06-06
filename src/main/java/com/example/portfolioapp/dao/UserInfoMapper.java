@@ -48,5 +48,5 @@ public interface UserInfoMapper {
 	void deleteData(Long id);
      
 	//学習時間合計の表示
-	List <SkillInfo> SumStudyTime();
+	List <SkillInfo> SumStudyTime(Long userId);
 }

@@ -52,7 +52,7 @@ public class SkillInfoService {
 	}
 	
 	//学習時間合計の表示
-	public List<SkillInfo>SumStudyTime(){
-		return userInfoMapper.SumStudyTime();
+	public List<SkillInfo>SumStudyTime(Long userId){
+		return userInfoMapper.SumStudyTime(userId);
 	}	
 }
