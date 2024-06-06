@@ -20,8 +20,8 @@ public class SkillInfoService {
 	private UserInfoMapper userInfoMapper;
 	
 	//学習データの表示
-	public List<SkillInfo>findAll(){
-		return userInfoMapper.findAll();
+	public List<SkillInfo>findAll(Long userId){
+		return userInfoMapper.findAll(userId);
 	}	
 	
 	//項目追加
@@ -30,12 +30,12 @@ public class SkillInfoService {
 		}
 	
 	//項目名がDB内に既に存在しているかを確認する
-	public boolean isItemExist(String name) {
+	public boolean isItemExist(String name,Long userId) {
 		
-		SkillInfo existingItem = userInfoMapper.findName(name);
+		SkillInfo existingItem = userInfoMapper.findName(name,userId);
 		return existingItem != null;
 	}
-	
+
 	//カテゴリー名の検索
 	public CategoriesInfo findCategory(Long category_id) {
 		return userInfoMapper.findCategory(category_id);
@@ -52,7 +52,7 @@ public class SkillInfoService {
 	}
 	
 	//学習時間合計の表示
-	public List<SkillInfo>SumStudyTime(){
-		return userInfoMapper.SumStudyTime();
+	public List<SkillInfo>SumStudyTime(Long userId){
+		return userInfoMapper.SumStudyTime(userId);
 	}	
 }

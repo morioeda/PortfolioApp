@@ -134,6 +134,12 @@ public class UserInfoController {
         
         // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        model.addAttribute("userName", userName);
+        
+        String selfIntroduction = userDetails.getSelf_introduction();
+        model.addAttribute("self_introduction",selfIntroduction);
         
         
         //ユーザー名をモデルに追加 ※ユーザー名をフッターに表示させるためのコード
@@ -184,15 +190,17 @@ public class UserInfoController {
     
     //スキル編集ページの表示
     @GetMapping(value = "/user/skilledit")
-    public String displaySkillEdit(Authentication loginUser,Model model) {
+    public String displaySkillEdit(SkillInfo skillInfo,Authentication loginUser,Model model,Authentication authentication) {
     	   // CustomUserDetailsオブジェクトを取得
         CustomUserDetails userDetails = (CustomUserDetails) loginUser.getPrincipal();
         //ユーザー名をモデルに追加
         model.addAttribute("userAddRequest", new UserAddRequest());
         model.addAttribute("hoge", userDetails.getName());
-                
+        
+        Long userId = userDetails.getId();
+        
         //learning_dataの情報を取得して表示させる
-        List<SkillInfo> dataList= skillInfoService.findAll();
+        List<SkillInfo> dataList= skillInfoService.findAll(userId);//skillInfo.getUser_id()
         model.addAttribute("datalist",dataList);
 //        model.addAttribute("userSearchRequest", new SkillAddRequest());※要らないぽい
         

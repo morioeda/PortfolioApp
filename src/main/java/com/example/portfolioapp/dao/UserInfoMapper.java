@@ -33,10 +33,11 @@ public interface UserInfoMapper {
      void add(SkillAddRequest skillAddRequest);
      
      //学習データ検索
-     List <SkillInfo> findAll();
+     List <SkillInfo> findAll(Long userId);
      
      //項目名検索（重複チェック用）
-     public SkillInfo findName(String name);
+     public SkillInfo findName(String name,Long userId);
+     
      
 	//カテゴリー名検索（カテゴリー名表示用）※SkillInfoじゃないやつ作成した方がいいかも
 	public CategoriesInfo findCategory(Long category_id);
@@ -48,5 +49,5 @@ public interface UserInfoMapper {
 	void deleteData(Long id);
      
 	//学習時間合計の表示
-	List <SkillInfo> SumStudyTime();
+	List <SkillInfo> SumStudyTime(Long userId);
 }
